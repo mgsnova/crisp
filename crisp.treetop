@@ -1,0 +1,39 @@
+grammar Crisp
+
+  rule operation
+    paren_start space func list:(space parameter)+ space paren_end <Operation>
+  end
+
+  rule parameter
+    operation / number
+  end
+
+  rule func
+    add_operator / sub_operator
+  end
+
+  rule add_operator
+    '+' <FuncAdd>
+  end
+
+  rule sub_operator
+    '-' <FuncSub>
+  end
+
+  rule number
+    ([0-9]+ / '0')+ <Number>
+  end
+
+  rule space
+    [ \t]*
+  end
+
+  rule paren_start
+    "("
+  end
+
+  rule paren_end
+    ")"
+  end
+
+end
