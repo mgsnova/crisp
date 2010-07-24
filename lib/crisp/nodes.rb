@@ -24,7 +24,7 @@ module Crisp
 
   class Operation < Base
     def eval(context)
-      context.last_return = self.func.eval(context,  self.list.elements.collect(&:parameter))
+      context.last_return = self.func.eval(context, self.list.elements.collect(&:parameter))
       context
     end
   end
