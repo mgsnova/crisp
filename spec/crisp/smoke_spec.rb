@@ -13,6 +13,6 @@ describe "the language" do
   end
 
   it "should be able to parse multiline statements" do
-    evaluate("(+ 1\n 2 (+\r 2 3)\t (- 5 1))").should == 12
+    evaluate(" (+ 1\n 2 (+\r 2 3)\t (- 5   1   )) ").should == 12
   end
 end

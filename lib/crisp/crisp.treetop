@@ -1,7 +1,7 @@
 grammar Crisp
 
   rule operation
-    paren_start space func list:(space parameter)+ space paren_end <Operation>
+    space paren_start space func list:(space parameter)+ space paren_end space <Operation>
   end
 
   rule parameter

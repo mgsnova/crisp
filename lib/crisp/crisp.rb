@@ -19,28 +19,36 @@ module Crisp
   end
 
   module Operation1
-    def paren_start
+    def space1
       elements[0]
     end
 
-    def space1
+    def paren_start
       elements[1]
     end
 
-    def func
+    def space2
       elements[2]
     end
 
-    def list
+    def func
       elements[3]
     end
 
-    def space2
+    def list
       elements[4]
     end
 
-    def paren_end
+    def space3
       elements[5]
+    end
+
+    def paren_end
+      elements[6]
+    end
+
+    def space4
+      elements[7]
     end
   end
 
@@ -56,50 +64,58 @@ module Crisp
     end
 
     i0, s0 = index, []
-    r1 = _nt_paren_start
+    r1 = _nt_space
     s0 << r1
     if r1
-      r2 = _nt_space
+      r2 = _nt_paren_start
       s0 << r2
       if r2
-        r3 = _nt_func
+        r3 = _nt_space
         s0 << r3
         if r3
-          s4, i4 = [], index
-          loop do
-            i5, s5 = index, []
-            r6 = _nt_space
-            s5 << r6
-            if r6
-              r7 = _nt_parameter
-              s5 << r7
-            end
-            if s5.last
-              r5 = instantiate_node(SyntaxNode,input, i5...index, s5)
-              r5.extend(Operation0)
-            else
-              @index = i5
-              r5 = nil
-            end
-            if r5
-              s4 << r5
-            else
-              break
-            end
-          end
-          if s4.empty?
-            @index = i4
-            r4 = nil
-          else
-            r4 = instantiate_node(SyntaxNode,input, i4...index, s4)
-          end
+          r4 = _nt_func
           s0 << r4
           if r4
-            r8 = _nt_space
-            s0 << r8
-            if r8
-              r9 = _nt_paren_end
+            s5, i5 = [], index
+            loop do
+              i6, s6 = index, []
+              r7 = _nt_space
+              s6 << r7
+              if r7
+                r8 = _nt_parameter
+                s6 << r8
+              end
+              if s6.last
+                r6 = instantiate_node(SyntaxNode,input, i6...index, s6)
+                r6.extend(Operation0)
+              else
+                @index = i6
+                r6 = nil
+              end
+              if r6
+                s5 << r6
+              else
+                break
+              end
+            end
+            if s5.empty?
+              @index = i5
+              r5 = nil
+            else
+              r5 = instantiate_node(SyntaxNode,input, i5...index, s5)
+            end
+            s0 << r5
+            if r5
+              r9 = _nt_space
               s0 << r9
+              if r9
+                r10 = _nt_paren_end
+                s0 << r10
+                if r10
+                  r11 = _nt_space
+                  s0 << r11
+                end
+              end
             end
           end
         end
