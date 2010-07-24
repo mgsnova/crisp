@@ -308,7 +308,7 @@ module Crisp
 
     s0, i0 = [], index
     loop do
-      if has_terminal?('\G[ \\t]', true, index)
+      if has_terminal?('\G[ \\t\\r\\n]', true, index)
         r1 = true
         @index += 1
       else

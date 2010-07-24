@@ -25,7 +25,7 @@ grammar Crisp
   end
 
   rule space
-    [ \t]*
+    [ \t\r\n]*
   end
 
   rule paren_start
