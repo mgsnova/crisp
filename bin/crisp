@@ -9,7 +9,7 @@ if ARGV.size == 0
 
   loop do
     print ">> " if buffer.empty?
-    buffer << gets.strip
+    buffer << gets
 
     if runtime.parse(buffer)
       runtime.run(buffer)
@@ -20,7 +20,7 @@ if ARGV.size == 0
     end
   end
 elsif ARGV.size == 1
-  runtime.run(File.read(ARGV.first).strip)
+  runtime.run(File.read(ARGV.first))
 else
   puts "to many args"
 end
