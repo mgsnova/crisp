@@ -1,5 +1,6 @@
 require 'rake/testtask'
 require 'spec/rake/spectask'
+require 'rake/gempackagetask'
 
 begin
   require 'jeweler'
@@ -20,6 +21,18 @@ begin
   Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler not available. Install it with: gem install jeweler"
+end
+
+def gemspec
+  @gemspec ||= begin
+    file = File.expand_path('../crisp.gemspec', __FILE__)
+    eval(File.read(file), binding, file)
+  end
+end
+
+Rake::GemPackageTask.new(gemspec) do |pkg|
+  pkg.need_zip = true
+  pkg.need_tar = true
 end
 
 Spec::Rake::SpecTask.new(:spec) do |spec|
