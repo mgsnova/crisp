@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+require 'lib/crisp'
+
+runtime = Crisp::Runtime.new
+
+if ARGV.size == 0
+  buffer = ''
+
+  loop do
+    print ">> " if buffer.empty?
+    buffer << gets.strip
+
+    if runtime.parse(buffer)
+      runtime.run(buffer)
+      puts "=> " + runtime.last_return.to_s
+      buffer = ''
+    else
+      print "?> "
+    end
+  end
+elsif ARGV.size == 1
+  runtime.run(File.read(ARGV.first).strip)
+else
+  puts "to many args"
+end
