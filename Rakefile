@@ -1,21 +1,36 @@
 require 'rake/testtask'
 require 'spec/rake/spectask'
 
+begin
+  require 'jeweler'
+  $:.unshift('./lib')
+  require 'lib/crisp'
+
+  Jeweler::Tasks.new do |gem|
+    gem.name = "crisp"
+    gem.version = Crisp::VERSION
+    gem.summary = 'a tiny lisp-like language written in ruby using treetop.'
+    gem.email = "github@mgsnova.de"
+    gem.homepage = "http://github.com/mgsnova/crisp"
+    gem.authors = ['Markus Gerdes']
+    gem.add_dependency 'treetop', '>= 1.4.0'
+    gem.add_development_dependency 'rspec', '>= 1.3.0'
+  end
+
+  Jeweler::GemcutterTasks.new
+rescue LoadError
+  puts "Jeweler not available. Install it with: gem install jeweler"
+end
+
 Spec::Rake::SpecTask.new(:spec) do |spec|
   spec.pattern = 'spec/**/*_spec.rb'
   spec.libs << 'lib' << 'spec'
   spec.spec_opts << '--options' << 'spec/spec.opts'
 end
 
-task :version_file do
-  $:.unshift('./lib')
-  require 'lib/crisp'
-  File.open("VERSION","w+") { |fp| fp.write(Crisp::VERSION) }
-end
-
 task :tt do
   `tt lib/crisp/crisp.treetop`
 end
 
-task :default => [:version_file, :tt, :spec] do
+task :default => [:tt, :spec] do
 end

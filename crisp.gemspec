@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
     "LICENSE",
      "Rakefile",
      "VERSION",
+     "crisp.gemspec",
      "lib/crisp.rb",
      "lib/crisp/crisp.rb",
      "lib/crisp/crisp.treetop",
