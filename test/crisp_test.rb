@@ -1,12 +1,10 @@
 require 'treetop'
 require 'test/unit'
 
-require 'crisp_context'
-require 'crisp_nodes'
-
+require 'lib/crisp'
 require 'pp'
 
-Treetop.load 'crisp'
+Treetop.load 'lib/crisp/crisp'
 
 class CrispTestSuite < Test::Unit::TestCase
   def setup

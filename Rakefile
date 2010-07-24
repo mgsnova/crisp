@@ -6,7 +6,7 @@ Rake::TestTask.new(:test) do |t|
 end
 
 task :tt do
-  `tt crisp.treetop`
+  `tt lib/crisp/crisp.treetop`
 end
 
 task :default => [:tt, :test] do
