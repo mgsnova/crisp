@@ -150,12 +150,17 @@ module Crisp
     if r1
       r0 = r1
     else
-      r2 = _nt_number
+      r2 = _nt_float
       if r2
         r0 = r2
       else
-        @index = i0
-        r0 = nil
+        r3 = _nt_number
+        if r3
+          r0 = r3
+        else
+          @index = i0
+          r0 = nil
+        end
       end
     end
 
@@ -252,6 +257,12 @@ module Crisp
     r0
   end
 
+  module Number0
+  end
+
+  module Number1
+  end
+
   def _nt_number
     start_index = index
     if node_cache[:number].has_key?(index)
@@ -263,60 +274,145 @@ module Crisp
       return cached
     end
 
-    s0, i0 = [], index
-    loop do
-      i1 = index
-      s2, i2 = [], index
-      loop do
-        if has_terminal?('\G[0-9]', true, index)
-          r3 = true
-          @index += 1
-        else
-          r3 = nil
-        end
-        if r3
-          s2 << r3
-        else
-          break
-        end
-      end
-      if s2.empty?
-        @index = i2
-        r2 = nil
+    i0, s0 = index, []
+    if has_terminal?('-', false, index)
+      r2 = instantiate_node(SyntaxNode,input, index...(index + 1))
+      @index += 1
+    else
+      terminal_parse_failure('-')
+      r2 = nil
+    end
+    if r2
+      r1 = r2
+    else
+      r1 = instantiate_node(SyntaxNode,input, index...index)
+    end
+    s0 << r1
+    if r1
+      i3 = index
+      i4, s4 = index, []
+      if has_terminal?('\G[1-9]', true, index)
+        r5 = true
+        @index += 1
       else
-        r2 = instantiate_node(SyntaxNode,input, i2...index, s2)
+        r5 = nil
       end
-      if r2
-        r1 = r2
+      s4 << r5
+      if r5
+        s6, i6 = [], index
+        loop do
+          if has_terminal?('\G[0-9]', true, index)
+            r7 = true
+            @index += 1
+          else
+            r7 = nil
+          end
+          if r7
+            s6 << r7
+          else
+            break
+          end
+        end
+        r6 = instantiate_node(SyntaxNode,input, i6...index, s6)
+        s4 << r6
+      end
+      if s4.last
+        r4 = instantiate_node(SyntaxNode,input, i4...index, s4)
+        r4.extend(Number0)
+      else
+        @index = i4
+        r4 = nil
+      end
+      if r4
+        r3 = r4
       else
         if has_terminal?('0', false, index)
-          r4 = instantiate_node(SyntaxNode,input, index...(index + 1))
+          r8 = instantiate_node(SyntaxNode,input, index...(index + 1))
           @index += 1
         else
           terminal_parse_failure('0')
-          r4 = nil
+          r8 = nil
         end
-        if r4
-          r1 = r4
+        if r8
+          r3 = r8
         else
-          @index = i1
-          r1 = nil
+          @index = i3
+          r3 = nil
         end
       end
-      if r1
-        s0 << r1
-      else
-        break
-      end
+      s0 << r3
     end
-    if s0.empty?
+    if s0.last
+      r0 = instantiate_node(Number,input, i0...index, s0)
+      r0.extend(Number1)
+    else
       @index = i0
       r0 = nil
-    else
-      r0 = instantiate_node(Number,input, i0...index, s0)
     end
 
     node_cache[:number][start_index] = r0
+
+    r0
+  end
+
+  module Float0
+    def number
+      elements[0]
+    end
+
+  end
+
+  def _nt_float
+    start_index = index
+    if node_cache[:float].has_key?(index)
+      cached = node_cache[:float][index]
+      if cached
+        cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+        @index = cached.interval.end
+      end
+      return cached
+    end
+
+    i0, s0 = index, []
+    r1 = _nt_number
+    s0 << r1
+    if r1
+      if has_terminal?('.', false, index)
+        r2 = instantiate_node(SyntaxNode,input, index...(index + 1))
+        @index += 1
+      else
+        terminal_parse_failure('.')
+        r2 = nil
+      end
+      s0 << r2
+      if r2
+        s3, i3 = [], index
+        loop do
+          if has_terminal?('\G[0-9]', true, index)
+            r4 = true
+            @index += 1
+          else
+            r4 = nil
+          end
+          if r4
+            s3 << r4
+          else
+            break
+          end
+        end
+        r3 = instantiate_node(SyntaxNode,input, i3...index, s3)
+        s0 << r3
+      end
+    end
+    if s0.last
+      r0 = instantiate_node(Float,input, i0...index, s0)
+      r0.extend(Float0)
+    else
+      @index = i0
+      r0 = nil
+    end
+
+    node_cache[:float][start_index] = r0
 
     r0
   end

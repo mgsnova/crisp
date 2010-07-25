@@ -20,4 +20,10 @@ module Crisp
       text_value.to_i
     end
   end
+
+  class Float < Primitive
+    def internal_value(env)
+      text_value.to_f
+    end
+  end
 end
