@@ -45,5 +45,5 @@ task :tt do
   `tt lib/crisp/crisp.treetop`
 end
 
-task :default => [:tt, :spec] do
+task :default => [:gemspec, :tt, :spec] do
 end

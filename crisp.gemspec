@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".gitignore",
+     "CHANGELOG.md",
      "LICENSE",
      "Rakefile",
      "bin/crisp",
@@ -26,6 +27,10 @@ Gem::Specification.new do |s|
      "lib/crisp/crisp.rb",
      "lib/crisp/crisp.treetop",
      "lib/crisp/env.rb",
+     "lib/crisp/function.rb",
+     "lib/crisp/functions.rb",
+     "lib/crisp/functions/arithmetic.rb",
+     "lib/crisp/functions/core.rb",
      "lib/crisp/nodes.rb",
      "lib/crisp/runtime.rb",
      "spec/crisp/arithmetics_spec.rb",
