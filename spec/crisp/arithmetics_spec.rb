@@ -64,7 +64,7 @@ describe "when evaluating arithmetic expressions, the language" do
     evaluate("(/ 30.0 -3 2.5)").should == -4.0
   end
 
-  it "should calculate nested arithmetic integer expressions" do
+  it "should calculate nested arithmetic float expressions" do
     evaluate("(+ 1 2.3 (* 2 3.5) (/ 10 4)) ").should == 12.3
     evaluate("(+ 1.5 2 (- 10 2.4 3) (* 1.0 2 3) (/ 12 3.0)) ").should == 18.1
     (evaluate("(/ 20.4 2 (+ 2.5 3) (- 5.5 3)) ") - 0.741818181818182).should < 0.000000001
