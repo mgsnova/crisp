@@ -1,23 +1,23 @@
 grammar Crisp
 
   rule operation
-    space paren_start space func list:(space parameter)+ space paren_end space <Operation>
+    space paren_start space func_identifier list:(space parameter)+ space paren_end space <Operation>
   end
 
   rule parameter
     operation / number
   end
 
-  rule func
-    add_operator / sub_operator
-  end
-
-  rule add_operator
-    '+' <FuncAdd>
-  end
-
-  rule sub_operator
-    '-' <FuncSub>
+  rule func_identifier
+    [a-z]+
+    /
+    '+'
+    /
+    '-'
+    /
+    '*'
+    /
+    '/'
   end
 
   rule number

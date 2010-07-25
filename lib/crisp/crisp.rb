@@ -31,7 +31,7 @@ module Crisp
       elements[2]
     end
 
-    def func
+    def func_identifier
       elements[3]
     end
 
@@ -73,7 +73,7 @@ module Crisp
         r3 = _nt_space
         s0 << r3
         if r3
-          r4 = _nt_func
+          r4 = _nt_func_identifier
           s0 << r4
           if r4
             s5, i5 = [], index
@@ -164,10 +164,10 @@ module Crisp
     r0
   end
 
-  def _nt_func
+  def _nt_func_identifier
     start_index = index
-    if node_cache[:func].has_key?(index)
-      cached = node_cache[:func][index]
+    if node_cache[:func_identifier].has_key?(index)
+      cached = node_cache[:func_identifier][index]
       if cached
         cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
         @index = cached.interval.end
@@ -176,68 +176,78 @@ module Crisp
     end
 
     i0 = index
-    r1 = _nt_add_operator
+    s1, i1 = [], index
+    loop do
+      if has_terminal?('\G[a-z]', true, index)
+        r2 = true
+        @index += 1
+      else
+        r2 = nil
+      end
+      if r2
+        s1 << r2
+      else
+        break
+      end
+    end
+    if s1.empty?
+      @index = i1
+      r1 = nil
+    else
+      r1 = instantiate_node(SyntaxNode,input, i1...index, s1)
+    end
     if r1
       r0 = r1
     else
-      r2 = _nt_sub_operator
-      if r2
-        r0 = r2
+      if has_terminal?('+', false, index)
+        r3 = instantiate_node(SyntaxNode,input, index...(index + 1))
+        @index += 1
       else
-        @index = i0
-        r0 = nil
+        terminal_parse_failure('+')
+        r3 = nil
+      end
+      if r3
+        r0 = r3
+      else
+        if has_terminal?('-', false, index)
+          r4 = instantiate_node(SyntaxNode,input, index...(index + 1))
+          @index += 1
+        else
+          terminal_parse_failure('-')
+          r4 = nil
+        end
+        if r4
+          r0 = r4
+        else
+          if has_terminal?('*', false, index)
+            r5 = instantiate_node(SyntaxNode,input, index...(index + 1))
+            @index += 1
+          else
+            terminal_parse_failure('*')
+            r5 = nil
+          end
+          if r5
+            r0 = r5
+          else
+            if has_terminal?('/', false, index)
+              r6 = instantiate_node(SyntaxNode,input, index...(index + 1))
+              @index += 1
+            else
+              terminal_parse_failure('/')
+              r6 = nil
+            end
+            if r6
+              r0 = r6
+            else
+              @index = i0
+              r0 = nil
+            end
+          end
+        end
       end
     end
 
-    node_cache[:func][start_index] = r0
-
-    r0
-  end
-
-  def _nt_add_operator
-    start_index = index
-    if node_cache[:add_operator].has_key?(index)
-      cached = node_cache[:add_operator][index]
-      if cached
-        cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
-        @index = cached.interval.end
-      end
-      return cached
-    end
-
-    if has_terminal?('+', false, index)
-      r0 = instantiate_node(FuncAdd,input, index...(index + 1))
-      @index += 1
-    else
-      terminal_parse_failure('+')
-      r0 = nil
-    end
-
-    node_cache[:add_operator][start_index] = r0
-
-    r0
-  end
-
-  def _nt_sub_operator
-    start_index = index
-    if node_cache[:sub_operator].has_key?(index)
-      cached = node_cache[:sub_operator][index]
-      if cached
-        cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
-        @index = cached.interval.end
-      end
-      return cached
-    end
-
-    if has_terminal?('-', false, index)
-      r0 = instantiate_node(FuncSub,input, index...(index + 1))
-      @index += 1
-    else
-      terminal_parse_failure('-')
-      r0 = nil
-    end
-
-    node_cache[:sub_operator][start_index] = r0
+    node_cache[:func_identifier][start_index] = r0
 
     r0
   end

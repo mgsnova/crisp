@@ -3,6 +3,7 @@ module Crisp
     def initialize
       @parser = CrispParser.new
       @env = Env.new
+      Functions.load(@env)
     end
 
     def parse(str)

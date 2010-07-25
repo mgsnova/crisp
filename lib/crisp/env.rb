@@ -1,5 +1,5 @@
 module Crisp
-  class Env
+  class Env < Hash
     attr_accessor :last_return
 
     def initialize
