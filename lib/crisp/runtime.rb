@@ -1,17 +1,13 @@
 module Crisp
   class Runtime
-    def initialize
-      @parser = CrispParser.new
+    def initialize(ast)
+      @ast = ast
       @env = Env.new
       Functions.load(@env)
     end
 
-    def parse(str)
-      @parser.parse(str)
-    end
-
-    def run(str)
-      parse(str).eval(@env)
+    def run
+      @ast.eval(@env)
     end
 
     def last_return

@@ -11,11 +11,11 @@ require SPEC_ROOT.parent + 'lib/crisp'
 module Crisp
   module SpecHelper
     def parse(expr)
-      @runtime.parse(expr)
+      CrispParser.new.parse(expr)
     end
 
     def run(expr)
-      @runtime.run(expr)
+      Crisp::Runtime.new(parse(expr)).run
     end
 
     def evaluate(expr)

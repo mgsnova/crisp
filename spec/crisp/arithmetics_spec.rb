@@ -1,12 +1,7 @@
 require 'spec_helper'
 
 describe "when evaluating arithmetic expressions, the language" do
-
   include Crisp::SpecHelper
-
-  before(:each) do
-    @runtime = Crisp::Runtime.new
-  end
 
   it "should calculate integer addition" do
     evaluate("(+ 1 2)").should == 3
