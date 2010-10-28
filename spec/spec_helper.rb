@@ -19,7 +19,7 @@ module Crisp
     end
 
     def evaluate(expr)
-      run(expr).last_return
+      run(expr)
     end
   end
 end

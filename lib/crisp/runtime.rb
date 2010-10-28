@@ -7,11 +7,7 @@ module Crisp
     end
 
     def run
-      @ast.eval(@env)
-    end
-
-    def last_return
-      @env.last_return
+      @ast.eval(@env).last_return
     end
   end
 end

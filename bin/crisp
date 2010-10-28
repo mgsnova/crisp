@@ -10,7 +10,7 @@ if ARGV.size == 0
     buffer << gets
 
     if ast = CrispParser.new.parse(buffer)
-      puts "=> " + Crisp::Runtime.new(ast).run.last_return.to_s
+      puts "=> " + Crisp::Runtime.new(ast).run.to_s
       buffer = ''
     else
       print "?> "
