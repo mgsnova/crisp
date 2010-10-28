@@ -11,8 +11,14 @@ describe "the language" do
     evaluate("(println (+ 1 1))")
   end
 
-  it "should bind variables to symbols" do
+  it "should bind value to symbol" do
     evaluate("(def bla 3)")
+  end
+
+  it "should not bind value to already binded symbol" do
+    lambda do
+      evaluate("(def def 123)")
+    end.should raise_error(StandardError, "def already binded")
   end
 
   it "should raise error if use def with wrong args" do
