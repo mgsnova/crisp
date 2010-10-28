@@ -15,7 +15,7 @@ begin
     gem.homepage = "http://github.com/mgsnova/crisp"
     gem.authors = ['Markus Gerdes']
     gem.add_dependency 'treetop', '>= 1.4.0'
-    gem.add_development_dependency 'rspec', '>= 1.3.0'
+    gem.add_development_dependency 'rspec', '>= 2.0.0'
   end
 
   Jeweler::GemcutterTasks.new
