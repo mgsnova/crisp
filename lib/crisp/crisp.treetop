@@ -5,7 +5,7 @@ grammar Crisp
   end
 
   rule parameter
-    operation / float / number
+    operation / float / number / symbol
   end
 
   rule func_identifier
@@ -18,6 +18,10 @@ grammar Crisp
     '*'
     /
     '/'
+  end
+
+  rule symbol
+    [a-z]+ <Symbol>
   end
 
   rule number

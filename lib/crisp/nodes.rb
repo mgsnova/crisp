@@ -26,4 +26,15 @@ module Crisp
       text_value.to_f
     end
   end
+
+  class Symbol < Primitive
+    def internal_value(env)
+      text_value
+    end
+  end
+
+  class Block < Base
+    def eval(env)
+    end
+  end
 end
