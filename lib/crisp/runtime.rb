@@ -1,13 +1,12 @@
 module Crisp
   class Runtime
-    def initialize(ast)
-      @ast = ast
+    def initialize
       @env = Env.new
       Functions.load(@env)
     end
 
-    def run
-      @ast.eval(@env).last_return
+    def run(ast)
+      ast.eval(@env).last_return
     end
   end
 end

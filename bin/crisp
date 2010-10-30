@@ -2,6 +2,8 @@
 
 require 'lib/crisp'
 
+runtime = Crisp::Runtime.new
+
 if ARGV.size == 0
   buffer = ''
 
@@ -10,7 +12,7 @@ if ARGV.size == 0
     buffer << gets
 
     if ast = CrispParser.new.parse(buffer)
-      puts "=> " + Crisp::Runtime.new(ast).run.to_s
+      puts "=> " + runtime.run(ast).to_s
       buffer = ''
     else
       print "?> "
@@ -20,4 +22,5 @@ elsif ARGV.size == 1
   raise "running crisp files is currently not supported"
 else
   puts "to many args"
+  exit 1
 end

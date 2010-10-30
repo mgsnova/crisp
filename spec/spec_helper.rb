@@ -15,7 +15,7 @@ module Crisp
     end
 
     def run(expr)
-      Crisp::Runtime.new(parse(expr)).run
+      Crisp::Runtime.new.run(parse(expr))
     end
 
     def evaluate(expr)
