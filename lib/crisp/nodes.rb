@@ -27,6 +27,12 @@ module Crisp
     end
   end
 
+  class StringLiteral < Primitive
+    def internal_value(env)
+      text_value[1..-2]
+    end
+  end
+
   class Symbol < Primitive
     def internal_value(env)
       text_value

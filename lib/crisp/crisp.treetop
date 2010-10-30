@@ -9,7 +9,7 @@ grammar Crisp
   end
 
   rule parameter
-    operation / float / number / symbol
+    operation / float / number / symbol / string
   end
 
   rule func_identifier
@@ -34,6 +34,10 @@ grammar Crisp
 
   rule float
     number '.' [0-9]* <Float>
+  end
+
+  rule string
+    '"' [a-z]* '"' <StringLiteral>
   end
 
   rule space
