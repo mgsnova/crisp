@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{crisp}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Markus Gerdes"]
@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
      "lib/crisp/runtime.rb",
      "spec/crisp/arithmetics_spec.rb",
      "spec/crisp/basic_spec.rb",
+     "spec/crisp/string_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
@@ -45,6 +46,7 @@ Gem::Specification.new do |s|
   s.summary = %q{a tiny lisp-like language written in ruby using treetop.}
   s.test_files = [
     "spec/spec_helper.rb",
+     "spec/crisp/string_spec.rb",
      "spec/crisp/arithmetics_spec.rb",
      "spec/crisp/basic_spec.rb"
   ]

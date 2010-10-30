@@ -3,7 +3,7 @@ require "treetop"
 require "pp"
 
 module Crisp
-  VERSION = '0.0.2'
+  VERSION = '0.0.3'
 end
 
 require 'crisp/crisp'

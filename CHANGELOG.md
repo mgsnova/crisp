@@ -1,7 +1,14 @@
-## 0.0.3 (2010-??-??)
+## 0.0.4 (2010-??-??)
+
+* ?
+
+## 0.0.3 (2010-10-30)
 
 * added support for float and negative numbers
-* ...
+* internal cleanup
+* basic symbol support
+* basic string support
+* support of multiple statements
 
 ## 0.0.2 (2010-07-25)
 
