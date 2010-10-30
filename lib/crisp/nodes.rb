@@ -35,6 +35,17 @@ module Crisp
 
   class Block < Base
     def eval(env)
+      list = [operation]
+
+      if !operations.elements.empty?
+        list += operations.elements.map { |op| op.operation }
+      end
+
+      list.each do |op|
+        op.eval(env)
+      end
+
+      env
     end
   end
 end

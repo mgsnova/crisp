@@ -1,5 +1,9 @@
 grammar Crisp
 
+  rule block
+    operation operations:(space operation)* <Block>
+  end
+
   rule operation
     space paren_start space func_identifier list:(space parameter)+ space paren_end space <Operation>
   end

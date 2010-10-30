@@ -5,7 +5,80 @@ module Crisp
   include Treetop::Runtime
 
   def root
-    @root ||= :operation
+    @root ||= :block
+  end
+
+  module Block0
+    def space
+      elements[0]
+    end
+
+    def operation
+      elements[1]
+    end
+  end
+
+  module Block1
+    def operation
+      elements[0]
+    end
+
+    def operations
+      elements[1]
+    end
+  end
+
+  def _nt_block
+    start_index = index
+    if node_cache[:block].has_key?(index)
+      cached = node_cache[:block][index]
+      if cached
+        cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+        @index = cached.interval.end
+      end
+      return cached
+    end
+
+    i0, s0 = index, []
+    r1 = _nt_operation
+    s0 << r1
+    if r1
+      s2, i2 = [], index
+      loop do
+        i3, s3 = index, []
+        r4 = _nt_space
+        s3 << r4
+        if r4
+          r5 = _nt_operation
+          s3 << r5
+        end
+        if s3.last
+          r3 = instantiate_node(SyntaxNode,input, i3...index, s3)
+          r3.extend(Block0)
+        else
+          @index = i3
+          r3 = nil
+        end
+        if r3
+          s2 << r3
+        else
+          break
+        end
+      end
+      r2 = instantiate_node(SyntaxNode,input, i2...index, s2)
+      s0 << r2
+    end
+    if s0.last
+      r0 = instantiate_node(Block,input, i0...index, s0)
+      r0.extend(Block1)
+    else
+      @index = i0
+      r0 = nil
+    end
+
+    node_cache[:block][start_index] = r0
+
+    r0
   end
 
   module Operation0

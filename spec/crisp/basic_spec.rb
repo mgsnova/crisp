@@ -26,4 +26,10 @@ describe "the language" do
       evaluate("(def bla 1 2)")
     end.should raise_error(StandardError, "wrong number of arguments for 'def' (3 for 2)")
   end
+
+  it "should evaluate a list of operations" do
+    lambda do
+      evaluate("(+ 1 2) (def foo 1) (def foo 2)")
+    end.should raise_error(StandardError, "foo already binded")
+  end
 end
