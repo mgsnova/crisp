@@ -35,7 +35,7 @@ module Crisp
 
   class Symbol < Primitive
     def internal_value(env)
-      text_value
+      text_value.to_sym
     end
   end
 
