@@ -1,7 +1,7 @@
 grammar Crisp
 
   rule block
-    operation operations:(space operation)* <Block>
+    (operation)* <Block>
   end
 
   rule operation
