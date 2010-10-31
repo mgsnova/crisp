@@ -1,6 +1,5 @@
 module Crisp
   class Env
-
     def initialize
       @map = {}
     end

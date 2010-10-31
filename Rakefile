@@ -41,9 +41,5 @@ Spec::Rake::SpecTask.new(:spec) do |spec|
   spec.spec_opts << '--options' << 'spec/spec.opts'
 end
 
-task :tt do
-  `tt lib/crisp/crisp.treetop`
-end
-
-task :default => [:gemspec, :tt, :spec] do
+task :default => [:gemspec, :spec] do
 end

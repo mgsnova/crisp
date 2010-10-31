@@ -11,7 +11,7 @@ if ARGV.size == 0
     print ">> " if buffer.empty?
     buffer << gets
 
-    if ast = CrispParser.new.parse(buffer)
+    if ast = Crisp::Parser.new.parse(buffer)
       puts "=> " + runtime.run(ast).to_s
       buffer = ''
     else
@@ -19,7 +19,7 @@ if ARGV.size == 0
     end
   end
 elsif ARGV.size == 1
-  if ast = CrispParser.new.parse(File.read(ARGV[0]))
+  if ast = Crisp::Parser.new.parse(File.read(ARGV[0]))
     runtime.run(ast).to_s
   else
     raise "something is wrong with the code"
