@@ -13,7 +13,7 @@ grammar Crisp
   end
 
   rule func_identifier
-    [a-z]+
+    symbol
     /
     '+'
     /
