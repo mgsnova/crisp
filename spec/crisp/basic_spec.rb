@@ -41,5 +41,6 @@ describe "the language" do
 
   it "should use values of binded symbols in later statements" do
     evaluate("(def bla 2) (* 4 bla)").should == 8
+    evaluate("(def bla (* 2 3)) (* 4 bla 2)").should == 48
   end
 end
