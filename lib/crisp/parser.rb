@@ -7,7 +7,11 @@ module Crisp
     end
 
     def parse(code)
-      @parser.parse(code)
+      ast = @parser.parse(code)
+
+      raise StandardError, "syntax error at : #{@parser.index}" if !ast
+
+      ast
     end
   end
 end

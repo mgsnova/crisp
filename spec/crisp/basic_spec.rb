@@ -32,4 +32,10 @@ describe "the language" do
       evaluate("(+ 1 2) (def foo 1) (def foo 2)")
     end.should raise_error(StandardError, "foo already binded")
   end
+
+  it "should produce syntax error on invalid syntax" do
+    lambda do
+      evaluate("(()")
+    end.should raise_error(StandardError, "syntax error at : 0")
+  end
 end
