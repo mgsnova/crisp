@@ -11,7 +11,7 @@ module Crisp
     def eval_args(env, params)
       params.map do |param|
         if param.class.superclass == Primitive
-          param.internal_value(env)
+          param.eval(env)
         elsif param.class == Operation
           param.eval(env)
         else

@@ -6,5 +6,4 @@ describe "when evaluating string expressions, the language" do
   it "should concat strings" do
     evaluate('(+ "foo" "bar")').should == 'foobar'
   end
-
 end

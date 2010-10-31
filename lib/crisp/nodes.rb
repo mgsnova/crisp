@@ -27,25 +27,25 @@ module Crisp
   end
 
   class Number < Primitive
-    def internal_value(env)
+    def eval(env)
       text_value.to_i
     end
   end
 
   class Float < Primitive
-    def internal_value(env)
+    def eval(env)
       text_value.to_f
     end
   end
 
   class StringLiteral < Primitive
-    def internal_value(env)
+    def eval(env)
       text_value[1..-2]
     end
   end
 
   class Symbol < Primitive
-    def internal_value(env)
+    def eval(env)
       text_value.to_sym
     end
   end
