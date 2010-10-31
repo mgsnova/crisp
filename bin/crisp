@@ -19,7 +19,11 @@ if ARGV.size == 0
     end
   end
 elsif ARGV.size == 1
-  raise "running crisp files is currently not supported"
+  if ast = CrispParser.new.parse(File.read(ARGV[0]))
+    runtime.run(ast).to_s
+  else
+    raise "something is wrong with the code"
+  end
 else
   puts "to many args"
   exit 1
