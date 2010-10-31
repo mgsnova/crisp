@@ -6,7 +6,7 @@ module Crisp
   VERSION = '0.0.3'
 end
 
-require 'crisp/crisp'
+require 'crisp/parser'
 require 'crisp/runtime'
 require 'crisp/env'
 require 'crisp/nodes'

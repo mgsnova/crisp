@@ -11,7 +11,7 @@ require SPEC_ROOT.parent + 'lib/crisp'
 module Crisp
   module SpecHelper
     def parse(expr)
-      CrispParser.new.parse(expr)
+      Crisp::Parser.new.parse(expr)
     end
 
     def evaluate(expr)
