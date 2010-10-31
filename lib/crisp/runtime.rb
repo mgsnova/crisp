@@ -6,7 +6,7 @@ module Crisp
     end
 
     def run(ast)
-      ast.eval(@env).last_return
+      ast.eval(@env)
     end
   end
 end

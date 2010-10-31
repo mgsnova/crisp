@@ -7,8 +7,7 @@ module Crisp
 
   class Operation < Base
     def eval(env)
-      env.last_return = env[self.func_identifier.text_value].eval(env, self.list.elements.collect(&:parameter))
-      env
+      env[self.func_identifier.text_value].eval(env, self.list.elements.collect(&:parameter))
     end
   end
 
@@ -41,11 +40,13 @@ module Crisp
 
   class Block < Base
     def eval(env)
+      last_result = nil
+
       elements.each do |op|
-        op.eval(env)
+        last_result = op.eval(env)
       end
 
-      env
+      last_result
     end
   end
 end

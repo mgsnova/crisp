@@ -14,7 +14,6 @@ module Crisp
           param.internal_value(env)
         elsif param.class == Operation
           param.eval(env)
-          env.last_return
         else
           param
         end
