@@ -38,4 +38,8 @@ describe "the language" do
       evaluate("(()")
     end.should raise_error(StandardError, "syntax error at : 0")
   end
+
+  it "should use values of binded symbols in later statements" do
+    evaluate("(def bla 2) (* 4 bla)").should == 8
+  end
 end

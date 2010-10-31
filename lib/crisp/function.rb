@@ -9,7 +9,9 @@ module Crisp
     end
 
     def eval(env, params = [])
-      @blk.call(env, values(env, params))
+      @env = env
+      @params = values(env, params)
+      self.instance_eval(&@blk)
     end
 
     protected
@@ -18,6 +20,30 @@ module Crisp
       params.map do |param|
         param.eval(env)
       end
+    end
+
+    def eval_symbols(env, params)
+      params.map do |param|
+        if param.class.to_s == 'Symbol'
+          if env[param].respond_to?(:eval)
+            env[param].eval(env)
+          else
+            env[param]
+          end
+        else
+          param
+        end
+      end
+    end
+
+    private
+
+    def env
+      @env
+    end
+
+    def params
+      @params
     end
   end
 end
