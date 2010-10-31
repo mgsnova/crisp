@@ -3,25 +3,21 @@ module Crisp
     attr_reader :name
 
     def initialize(name, env, &blk)
-      @name = name
+      @name = name.to_sym
       @blk = blk
-      env[name.to_s] = self
-    end
-
-    def eval_args(env, params)
-      params.map do |param|
-        if param.class.superclass == Primitive
-          param.eval(env)
-        elsif param.class == Operation
-          param.eval(env)
-        else
-          param
-        end
-      end
+      env[name] = self
     end
 
     def eval(env, params = [])
-      @blk.call(env, eval_args(env, params))
+      @blk.call(env, values(env, params))
+    end
+
+    protected
+
+    def values(env, params)
+      params.map do |param|
+        param.eval(env)
+      end
     end
   end
 end
