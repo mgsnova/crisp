@@ -1,6 +1,6 @@
 ## 0.0.4 (2010-??-??)
 
-* ?
+* internal/structural improvements
 
 ## 0.0.3 (2010-10-30)
 
