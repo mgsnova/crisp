@@ -4,12 +4,15 @@ module Crisp
       def self.load(env)
 
         Function.new('println', env) do
-          print eval_symbols(env, params).collect(&:to_s).join(' ') + "\n"
+          print params_evaled.collect(&:to_s).join(' ') + "\n"
         end
 
         Function.new('def', env) do
-          raise "wrong number of arguments for 'def' (#{params.size} for 2)" if params.size != 2
-          env[params[0]] = params[1]
+          if params_values.size != 2
+            raise "wrong number of arguments for 'def' (#{params_values.size} for 2)"
+          end
+
+          env[params_values[0]] = params_values[1]
         end
 
       end

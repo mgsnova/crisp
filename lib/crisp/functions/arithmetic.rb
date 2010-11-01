@@ -4,19 +4,19 @@ module Crisp
       def self.load(env)
 
         Function.new('+', env) do
-          eval_symbols(env, params).inject(:+)
+          params_evaled.inject(:+)
         end
 
         Function.new('-', env) do
-          eval_symbols(env, params).inject(:-)
+          params_evaled.inject(:-)
         end
 
         Function.new('*', env) do
-          eval_symbols(env, params).inject(:*)
+          params_evaled.inject(:*)
         end
 
         Function.new('/', env) do
-          eval_symbols(env, params).inject(:/)
+          params_evaled.inject(:/)
         end
 
       end

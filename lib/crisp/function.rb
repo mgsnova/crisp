@@ -10,20 +10,20 @@ module Crisp
 
     def eval(env, params = [])
       @env = env
-      @params = values(env, params)
+      @params = params
       self.instance_eval(&@blk)
     end
 
     protected
 
-    def values(env, params)
+    def params_values
       params.map do |param|
         param.eval(env)
       end
     end
 
-    def eval_symbols(env, params)
-      params.map do |param|
+    def params_evaled
+      params_values.map do |param|
         if param.class.to_s == 'Symbol'
           if env[param].respond_to?(:eval)
             env[param].eval(env)
