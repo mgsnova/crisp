@@ -18,25 +18,25 @@ describe "the language" do
   it "should not bind value to already binded symbol" do
     lambda do
       evaluate("(def def 123)")
-    end.should raise_error(StandardError, "def already binded")
+    end.should raise_error(Crisp::EnvironmentError, "def already binded")
   end
 
   it "should raise error if use def with wrong args" do
     lambda do
       evaluate("(def bla 1 2)")
-    end.should raise_error(StandardError, "wrong number of arguments for 'def' (3 for 2)")
+    end.should raise_error(Crisp::ArgumentError, "wrong number of arguments for 'def' (3 for 2)")
   end
 
   it "should evaluate a list of operations" do
     lambda do
       evaluate("(+ 1 2) (def foo 1) (def foo 2)")
-    end.should raise_error(StandardError, "foo already binded")
+    end.should raise_error(Crisp::EnvironmentError, "foo already binded")
   end
 
   it "should produce syntax error on invalid syntax" do
     lambda do
       evaluate("(()")
-    end.should raise_error(StandardError, "syntax error at : 0")
+    end.should raise_error(Crisp::SyntaxError, "syntax error at : 0")
   end
 
   it "should use values of binded symbols in later statements" do

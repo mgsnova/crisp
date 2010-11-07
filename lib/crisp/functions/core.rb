@@ -9,7 +9,7 @@ module Crisp
 
         Function.new('def', env) do
           if params_values.size != 2
-            raise "wrong number of arguments for 'def' (#{params_values.size} for 2)"
+            raise ArgumentError, "wrong number of arguments for 'def' (#{params_values.size} for 2)"
           end
 
           env[params_values[0]] = params_values[1]

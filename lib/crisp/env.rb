@@ -10,7 +10,7 @@ module Crisp
 
     def []=(key, val)
       key = key.to_sym
-      raise "#{key} already binded" if @map.has_key?(key)
+      raise EnvironmentError, "#{key} already binded" if @map.has_key?(key)
       @map[key] = val
     end
   end
