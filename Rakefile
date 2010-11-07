@@ -41,5 +41,5 @@ Spec::Rake::SpecTask.new(:spec) do |spec|
   spec.spec_opts << '--options' << 'spec/spec.opts'
 end
 
-task :default => [:gemspec, :spec] do
+task :default => [:gemspec, :spec, :gem] do
 end
