@@ -9,17 +9,19 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Markus Gerdes"]
-  s.date = %q{2010-10-31}
+  s.date = %q{2010-11-07}
   s.default_executable = %q{crisp}
   s.email = %q{github@mgsnova.de}
   s.executables = ["crisp"]
   s.extra_rdoc_files = [
-    "LICENSE"
+    "LICENSE",
+     "README.md"
   ]
   s.files = [
     ".gitignore",
      "CHANGELOG.md",
      "LICENSE",
+     "README.md",
      "Rakefile",
      "bin/crisp",
      "crisp.gemspec",
@@ -46,9 +48,9 @@ Gem::Specification.new do |s|
   s.summary = %q{a tiny lisp-like language written in ruby using treetop.}
   s.test_files = [
     "spec/spec_helper.rb",
-     "spec/crisp/string_spec.rb",
      "spec/crisp/arithmetics_spec.rb",
-     "spec/crisp/basic_spec.rb"
+     "spec/crisp/basic_spec.rb",
+     "spec/crisp/string_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
