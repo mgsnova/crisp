@@ -1,5 +1,5 @@
 require 'rake/testtask'
-require 'spec/rake/spectask'
+require 'rspec/core/rake_task'
 require 'rake/gempackagetask'
 
 begin
@@ -15,7 +15,7 @@ begin
     gem.homepage = "http://github.com/mgsnova/crisp"
     gem.authors = ['Markus Gerdes']
     gem.add_dependency 'treetop', '>= 1.4.0'
-    gem.add_development_dependency 'rspec', '>= 2.0.0'
+    gem.add_development_dependency 'rspec', '>= 2.1.0'
   end
 
   Jeweler::GemcutterTasks.new
@@ -35,10 +35,9 @@ Rake::GemPackageTask.new(gemspec) do |pkg|
   pkg.need_tar = true
 end
 
-Spec::Rake::SpecTask.new(:spec) do |spec|
+RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = 'spec/**/*_spec.rb'
-  spec.libs << 'lib' << 'spec'
-  spec.spec_opts << '--options' << 'spec/spec.opts'
+  spec.rspec_opts = ['--colour', '-f documentation', '--backtrace']
 end
 
 task :default => [:gemspec, :spec, :gem] do
