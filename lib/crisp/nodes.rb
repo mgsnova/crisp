@@ -7,7 +7,7 @@ module Crisp
 
   class Operation < Base
     def eval(env)
-      env[self.func_identifier.text_value].eval(env, self.list.elements.collect(&:parameter))
+      env[self.func_identifier.text_value].eval(env, self.element_list.elements.collect(&:element))
     end
   end
 
@@ -20,6 +20,12 @@ module Crisp
       end
 
       last_result
+    end
+  end
+
+  class ArrayLiteral < Base
+    def eval(env)
+      self.element_list.elements.collect(&:element).map { |e| e.eval(env) }
     end
   end
 

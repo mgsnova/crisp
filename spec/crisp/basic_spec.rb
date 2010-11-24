@@ -43,4 +43,10 @@ describe "the language" do
     evaluate("(def bla 2) (* 4 bla)").should == 8
     evaluate("(def bla (* 2 3)) (* 4 bla 2)").should == 48
   end
+
+  it "should parse an array" do
+    evaluate("(def bla [1 2 3])").size.should == 3
+    evaluate("(def bla [1 2 3])")[1].should == 2
+    evaluate("(def bla [1 2 foo])")[2].should == :foo
+  end
 end

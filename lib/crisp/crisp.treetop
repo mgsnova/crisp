@@ -5,11 +5,15 @@ grammar Crisp
   end
 
   rule operation
-    space paren_start space func_identifier list:(space parameter)+ space paren_end space <Operation>
+    space paren_start space func_identifier element_list:(space element)+ space paren_end space <Operation>
   end
 
-  rule parameter
-    operation / float / number / symbol / string
+  rule array
+    array_paren_start element_list:(space element)* space array_paren_end <ArrayLiteral>
+  end
+
+  rule element
+    operation / float / number / symbol / string / array
   end
 
   rule func_identifier
@@ -50,6 +54,14 @@ grammar Crisp
 
   rule paren_end
     ")"
+  end
+
+  rule array_paren_start
+    "["
+  end
+
+  rule array_paren_end
+    "]"
   end
 
 end
