@@ -3,9 +3,13 @@ module Crisp
     attr_reader :name
 
     def initialize(name, env, &blk)
-      @name = name.to_sym
+      # ignore anonymous functions here
+      if name
+        @name = name.to_sym
+        env[name] = self
+      end
+
       @blk = blk
-      env[name] = self
     end
 
     def eval(env, params = [])
@@ -15,6 +19,12 @@ module Crisp
     end
 
     protected
+
+    def validate_params_count(expected, got)
+      if expected != got
+        raise ArgumentError, "wrong number of arguments for '#{name}' (#{got} for #{expected})"
+      end
+    end
 
     def params_values
       params.map do |param|

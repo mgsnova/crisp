@@ -25,7 +25,11 @@ module Crisp
 
   class ArrayLiteral < Base
     def eval(env)
-      self.element_list.elements.collect(&:element).map { |e| e.eval(env) }
+      raw_elements.map { |e| e.eval(env) }
+    end
+
+    def raw_elements
+      self.element_list.elements.collect(&:element)
     end
   end
 

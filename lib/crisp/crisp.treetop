@@ -29,7 +29,7 @@ grammar Crisp
   end
 
   rule symbol
-    [a-z]+ <Symbol>
+    [a-z] [a-z0-9]* <Symbol>
   end
 
   rule number
@@ -41,7 +41,7 @@ grammar Crisp
   end
 
   rule string
-    '"' [a-z]* '"' <StringLiteral>
+    '"' [^"]* '"' <StringLiteral>
   end
 
   rule space

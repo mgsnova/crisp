@@ -49,4 +49,40 @@ describe "the language" do
     evaluate("(def bla [1 2 3])")[1].should == 2
     evaluate("(def bla [1 2 foo])")[2].should == :foo
   end
+
+  it "should raise error if not providing right amount of parameters for function creation" do
+    lambda do
+      evaluate("(fn [] (+ 1 2) [])")
+    end.should raise_error(Crisp::ArgumentError, "wrong number of arguments for 'fn' (3 for 2)")
+  end
+
+  it "should raise error if not providing proper argument list for function generation" do
+    lambda do
+      evaluate("(fn (+ 2 1) (+ 1 2))")
+    end.should raise_error(Crisp::ArgumentError, "no parameter list defined")
+  end
+
+  it "should raise error if not providing proper function body" do
+    lambda do
+      evaluate("(fn [] [])")
+    end.should raise_error(Crisp::ArgumentError, "no function body defined")
+  end
+
+  it "should create functions" do
+    evaluate("(fn [arg] (+ 2 arg))")
+  end
+
+  it "should bind functions to symbols" do
+    evaluate("(def myfn (fn [arg] (+ 1 arg)))").class.name.should == "Crisp::Function"
+  end
+
+  it "should call functions" do
+    evaluate("(def myfn (fn [a b] (+ 1 1)))(myfn 1 2)").should == 2
+  end
+
+  it "should raise error on wrong amount of parameters" do
+    lambda do
+      evaluate("(def myfn (fn [a1 a2 a3] (+ 1 1)))(myfn 1)")
+    end.should raise_error(Crisp::ArgumentError, "wrong number of arguments for '' (1 for 3)")
+  end
 end
