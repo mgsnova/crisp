@@ -10,7 +10,7 @@ module Crisp
         Function.new('def', env) do
           validate_params_count(2, params.size)
 
-          env[params_values[0]] = params_values[1]
+          env[params_values[0]] = params_evaled[1]
         end
 
         Function.new('fn', env) do

@@ -5,7 +5,7 @@ grammar Crisp
   end
 
   rule operation
-    space paren_start space func_identifier element_list:(space element)+ space paren_end space <Operation>
+    space paren_start space func_identifier element_list:(space element)* space paren_end space <Operation>
   end
 
   rule array

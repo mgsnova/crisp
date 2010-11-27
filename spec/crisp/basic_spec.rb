@@ -17,8 +17,8 @@ describe "the language" do
 
   it "should not bind value to already binded symbol" do
     lambda do
-      evaluate("(def def 123)")
-    end.should raise_error(Crisp::EnvironmentError, "def already binded")
+      evaluate("(def name 123)(def name 123)")
+    end.should raise_error(Crisp::EnvironmentError, "name already binded")
   end
 
   it "should raise error if use def with wrong args" do
