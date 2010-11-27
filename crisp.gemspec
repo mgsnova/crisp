@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{crisp}
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Markus Gerdes"]
@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "bin/crisp",
     "crisp.gemspec",
     "lib/crisp.rb",
+    "lib/crisp/chained_env.rb",
     "lib/crisp/crisp.treetop",
     "lib/crisp/env.rb",
     "lib/crisp/errors.rb",

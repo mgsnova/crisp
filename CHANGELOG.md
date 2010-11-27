@@ -1,5 +1,14 @@
-## 0.0.4 (2010-??-??)
+## 0.0.5 (2010-xx-xx)
 
+* todo
+
+## 0.0.4 (2010-11-27)
+
+* functions :-)
+* basic array support
+* more infos on syntax failures
+* grammar will be loaded dynamically
+* improved commandline tool
 * internal/structural improvements
 
 ## 0.0.3 (2010-10-30)
