@@ -28,9 +28,16 @@ module Crisp
           fn_operation = params[1]
 
           Function.new(nil, env) do
-            # TODO create chained env with parameterlist binding
             validate_params_count(fn_param_list.size, params.size)
-            fn_operation.eval(env)
+
+            local_env = Env.new
+            fn_param_list.each_with_index do |key, idx|
+              local_env[key.eval(env)] = params[idx]
+            end
+
+            chained_env = ChainedEnv.new(local_env, env)
+
+            fn_operation.eval(chained_env)
           end
         end
 

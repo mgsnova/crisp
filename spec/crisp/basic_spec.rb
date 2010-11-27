@@ -80,6 +80,10 @@ describe "the language" do
     evaluate("(def myfn (fn [a b] (+ 1 1)))(myfn 1 2)").should == 2
   end
 
+  it "should use parameters when calling functions" do
+    evaluate("(def myfn (fn [a b] (+ a b)))(myfn 5 2)").should == 7
+  end
+
   it "should raise error on wrong amount of parameters" do
     lambda do
       evaluate("(def myfn (fn [a1 a2 a3] (+ 1 1)))(myfn 1)")

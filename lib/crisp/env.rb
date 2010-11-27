@@ -4,6 +4,10 @@ module Crisp
       @map = {}
     end
 
+    def has_key?(key)
+      @map.has_key?(key.to_sym)
+    end
+
     def [](key)
       @map[key.to_sym]
     end

@@ -9,6 +9,7 @@ end
 require 'crisp/errors'
 require 'crisp/parser'
 require 'crisp/runtime'
+require 'crisp/chained_env'
 require 'crisp/env'
 require 'crisp/nodes'
 require 'crisp/function'
