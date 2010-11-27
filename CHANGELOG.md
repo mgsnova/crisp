@@ -28,4 +28,3 @@
 ## 0.0.1 (2010-07-24)
 
 * first basic arithmetic features
-
