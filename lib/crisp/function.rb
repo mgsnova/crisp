@@ -2,14 +2,14 @@ module Crisp
   class Function
     attr_reader :name
 
-    def initialize(name, env, &blk)
-      # ignore anonymous functions here
-      if name
-        @name = name.to_sym
-        env[name] = self
-      end
-
+    def initialize(&blk)
+      @name = nil
       @blk = blk
+    end
+
+    def bind(name, env)
+      @name = name.to_sym
+      env[name] = self
     end
 
     def eval(env, params = [])

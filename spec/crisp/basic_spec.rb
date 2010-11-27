@@ -87,6 +87,6 @@ describe "the language" do
   it "should raise error on wrong amount of parameters" do
     lambda do
       evaluate("(def myfn (fn [a1 a2 a3] (+ 1 1)))(myfn 1)")
-    end.should raise_error(Crisp::ArgumentError, "wrong number of arguments for '' (1 for 3)")
+    end.should raise_error(Crisp::ArgumentError, "wrong number of arguments for 'myfn' (1 for 3)")
   end
 end

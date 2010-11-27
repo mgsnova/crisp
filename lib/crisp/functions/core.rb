@@ -3,17 +3,23 @@ module Crisp
     class Core
       def self.load(env)
 
-        Function.new('println', env) do
+        Function.new do
           print params_evaled.collect(&:to_s).join(' ') + "\n"
-        end
+        end.bind('println', env)
 
-        Function.new('def', env) do
+        Function.new do
           validate_params_count(2, params.size)
 
-          env[params_values[0]] = params_evaled[1]
-        end
+          value = params_evaled[1]
 
-        Function.new('fn', env) do
+          if value.class.name == "Crisp::Function"
+            value.bind(params_values[0], env)
+          else
+            env[params_values[0]] = value
+          end
+        end.bind('def', env)
+
+        Function.new do
           validate_params_count(2, params.size)
 
           if params[0].class.name != "Crisp::ArrayLiteral"
@@ -27,7 +33,7 @@ module Crisp
           fn_param_list = params[0].raw_elements
           fn_operation = params[1]
 
-          Function.new(nil, env) do
+          Function.new do
             validate_params_count(fn_param_list.size, params.size)
 
             local_env = Env.new
@@ -39,7 +45,7 @@ module Crisp
 
             fn_operation.eval(chained_env)
           end
-        end
+        end.bind('fn', env)
 
       end
     end

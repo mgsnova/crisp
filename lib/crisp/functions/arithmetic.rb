@@ -3,21 +3,21 @@ module Crisp
     class Arithmetic
       def self.load(env)
 
-        Function.new('+', env) do
+        Function.new do
           params_evaled.inject(:+)
-        end
+        end.bind('+', env)
 
-        Function.new('-', env) do
+        Function.new do
           params_evaled.inject(:-)
-        end
+        end.bind('-', env)
 
-        Function.new('*', env) do
+        Function.new do
           params_evaled.inject(:*)
-        end
+        end.bind('*', env)
 
-        Function.new('/', env) do
+        Function.new do
           params_evaled.inject(:/)
-        end
+        end.bind('/', env)
 
       end
     end
