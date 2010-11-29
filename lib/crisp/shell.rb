@@ -1,16 +1,13 @@
 module Crisp
   class Shell
+    require 'readline'
+
     def run
       runtime = Runtime.new
-      buffer = ''
 
-      loop do
-        print ">> " if buffer.empty?
-        buffer << gets
-
-        if ast = Parser.new.parse(buffer)
+      while (line = Readline.readline(">> ", true))
+        if ast = Parser.new.parse(line)
           puts "=> " + runtime.run(ast).to_s
-          buffer = ''
         else
           print "?> "
         end
