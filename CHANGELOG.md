@@ -1,6 +1,11 @@
-## 0.0.5 (2010-xx-xx)
+## 0.0.6 (2010-xx-xx)
 
 * todo
+
+## 0.0.5 (2010-11-29)
+
+* improved interactive shell (readline support)
+* internal improvments
 
 ## 0.0.4 (2010-11-27)
 
