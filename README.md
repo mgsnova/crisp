@@ -8,6 +8,7 @@ The main purpose of the language is to deal with the issues and problems when cr
 
 ### Example
 
+        # crisp
         >> (* 2 3)
         => 6
         >> (def foo 4)
@@ -21,7 +22,7 @@ The main purpose of the language is to deal with the issues and problems when cr
 
 ### Installation
 
-gem is coming soon.
+        gem install crisp
 
 ### Usage
 
