@@ -59,4 +59,22 @@ module Crisp
       text_value.to_sym
     end
   end
+
+  class True < Primitive
+    def eval(env)
+      true
+    end
+  end
+
+  class False < Primitive
+    def eval(env)
+      false
+    end
+  end
+
+  class Nil < Primitive
+    def eval(env)
+      nil
+    end
+  end
 end

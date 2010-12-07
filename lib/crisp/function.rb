@@ -21,7 +21,8 @@ module Crisp
     protected
 
     def validate_params_count(expected, got)
-      if expected != got
+      if (expected.is_a?(Numeric) and expected != got) or
+         (expected.is_a?(Range) and !(expected === got))
         raise ArgumentError, "wrong number of arguments for '#{name}' (#{got} for #{expected})"
       end
     end

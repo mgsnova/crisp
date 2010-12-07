@@ -89,4 +89,26 @@ describe "the language" do
       evaluate("(def myfn (fn [a1 a2 a3] (+ 1 1)))(myfn 1)")
     end.should raise_error(Crisp::ArgumentError, "wrong number of arguments for 'myfn' (1 for 3)")
   end
+
+  it "should run if statement" do
+    evaluate("(if true 1)").should == 1
+    evaluate("(if false 1)").should == nil
+    evaluate("(if nil 1)").should == nil
+  end
+
+  it "should run if else statement" do
+    evaluate("(if true 1 2)").should == 1
+    evaluate("(if false 1 2)").should == 2
+    evaluate("(if nil 1 2)").should == 2
+  end
+
+  it "should not run if statements with too many arguments" do
+    lambda do
+      evaluate("(if true true false 2)")
+    end.should raise_error(Crisp::ArgumentError, "wrong number of arguments for 'if' (4 for 2..3)")
+
+    lambda do
+      evaluate("(if true)")
+    end.should raise_error(Crisp::ArgumentError, "wrong number of arguments for 'if' (1 for 2..3)")
+  end
 end

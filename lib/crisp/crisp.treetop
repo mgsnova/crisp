@@ -13,7 +13,7 @@ grammar Crisp
   end
 
   rule element
-    operation / float / number / symbol / string / array
+    true / false / nil / operation / float / number / symbol / string / array
   end
 
   rule func_identifier
@@ -26,6 +26,18 @@ grammar Crisp
     '*'
     /
     '/'
+  end
+
+  rule true
+    'true' <True>
+  end
+
+  rule false
+    'false' <False>
+  end
+
+  rule nil
+    'nil' <Nil>
   end
 
   rule symbol

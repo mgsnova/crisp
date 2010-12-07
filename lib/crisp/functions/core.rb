@@ -47,6 +47,18 @@ module Crisp
           end
         end.bind('fn', env)
 
+        Function.new do
+          validate_params_count((2..3), params.size)
+
+          result = params[0].eval(env)
+
+          if ![nil, false].include?(result)
+            params[1].eval(env)
+          elsif params[2]
+            params[2].eval(env)
+          end
+        end.bind('if', env)
+
       end
     end
   end
