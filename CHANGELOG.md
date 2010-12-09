@@ -1,6 +1,8 @@
 ## 0.0.6 (2010-xx-xx)
 
-* todo
+* if else statements
+* compare functions
+* ...
 
 ## 0.0.5 (2010-11-29)
 
