@@ -2,7 +2,7 @@
 
 * if else statements
 * compare functions
-* ...
+* refactored internals and specs
 
 ## 0.0.5 (2010-11-29)
 
