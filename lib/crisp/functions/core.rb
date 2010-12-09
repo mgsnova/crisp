@@ -1,11 +1,11 @@
 module Crisp
   module Functions
     class Core
-      def self.load(env)
+      def self.load(current_env)
 
         Function.new do
           print params_evaled.collect(&:to_s).join(' ') + "\n"
-        end.bind('println', env)
+        end.bind('println', current_env)
 
         Function.new do
           validate_params_count(2, params.size)
@@ -13,11 +13,11 @@ module Crisp
           value = params_evaled[1]
 
           if value.class.name == "Crisp::Function"
-            value.bind(params_values[0], env)
+            value.bind(params[0].eval(env), env)
           else
-            env[params_values[0]] = value
+            env[params[0].eval(env)] = value
           end
-        end.bind('def', env)
+        end.bind('def', current_env)
 
         Function.new do
           validate_params_count(2, params.size)
@@ -38,14 +38,18 @@ module Crisp
 
             local_env = Env.new
             fn_param_list.each_with_index do |key, idx|
-              local_env[key.eval(env)] = params[idx]
+              local_env[key.eval(env)] = if params[idx].class.name == "Crisp::Operation"
+                params[idx].eval(env)
+              else
+                params[idx]
+              end
             end
 
             chained_env = ChainedEnv.new(local_env, env)
 
             fn_operation.eval(chained_env)
           end
-        end.bind('fn', env)
+        end.bind('fn', current_env)
 
         Function.new do
           validate_params_count((2..3), params.size)
@@ -57,7 +61,7 @@ module Crisp
           elsif params[2]
             params[2].eval(env)
           end
-        end.bind('if', env)
+        end.bind('if', current_env)
 
       end
     end

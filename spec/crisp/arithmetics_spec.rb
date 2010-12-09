@@ -64,4 +64,21 @@ describe "when evaluating arithmetic expressions, the language" do
     evaluate("(+ 1.5 2 (- 10 2.4 3) (* 1.0 2 3) (/ 12 3.0)) ").should == 18.1
     evaluate("(/ 20.4 2 (+ 2.5 3) (- 5.5 3)) ").should be_within(0.000000001).of(0.741818181818182)
   end
+
+  it "should compare values on equality" do
+    evaluate("(= 1 1)").should == true
+    evaluate("(= 1 2)").should == false
+  end
+
+  it "should compare values greater than another" do
+    evaluate("(> 2 1)").should == true
+    evaluate("(> 1 1)").should == false
+    evaluate("(> 1 2)").should == false
+  end
+
+  it "should compare values less than another" do
+    evaluate("(< 2 1)").should == false
+    evaluate("(< 1 1)").should == false
+    evaluate("(< 1 2)").should == true
+  end
 end

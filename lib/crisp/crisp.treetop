@@ -19,13 +19,7 @@ grammar Crisp
   rule func_identifier
     symbol
     /
-    '+'
-    /
-    '-'
-    /
-    '*'
-    /
-    '/'
+    [/=*<>\-+]
   end
 
   rule true
