@@ -49,6 +49,8 @@ Gem::Specification.new do |s|
   s.test_files = [
     "spec/crisp/arithmetics_spec.rb",
     "spec/crisp/basic_spec.rb",
+    "spec/crisp/core_spec.rb",
+    "spec/crisp/function_spec.rb",
     "spec/crisp/string_spec.rb",
     "spec/spec_helper.rb"
   ]
