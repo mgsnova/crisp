@@ -22,11 +22,11 @@ module Crisp
         Function.new do
           validate_params_count(2, params.size)
 
-          if params[0].class.name != "Crisp::ArrayLiteral"
+          if params[0].class.name != "Crisp::Nodes::ArrayLiteral"
             raise ArgumentError, "no parameter list defined"
           end
 
-          if params[1].class.name != "Crisp::Operation"
+          if params[1].class.name != "Crisp::Nodes::Operation"
             raise ArgumentError, "no function body defined"
           end
 
@@ -38,7 +38,7 @@ module Crisp
 
             local_env = Env.new
             fn_param_list.each_with_index do |key, idx|
-              local_env[key.eval(env)] = if params[idx].class.name == "Crisp::Operation"
+              local_env[key.eval(env)] = if params[idx].class.name == "Crisp::Nodes::Operation"
                 params[idx].eval(env)
               else
                 params[idx]

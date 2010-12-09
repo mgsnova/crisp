@@ -1,15 +1,15 @@
 grammar Crisp
 
   rule block
-    (operation)* <Block>
+    (operation)* <Nodes::Block>
   end
 
   rule operation
-    space paren_start space func_identifier element_list:(space element)* space paren_end space <Operation>
+    space paren_start space func_identifier element_list:(space element)* space paren_end space <Nodes::Operation>
   end
 
   rule array
-    array_paren_start element_list:(space element)* space array_paren_end <ArrayLiteral>
+    array_paren_start element_list:(space element)* space array_paren_end <Nodes::ArrayLiteral>
   end
 
   rule element
@@ -23,31 +23,31 @@ grammar Crisp
   end
 
   rule true
-    'true' <TrueLiteral>
+    'true' <Nodes::TrueLiteral>
   end
 
   rule false
-    'false' <FalseLiteral>
+    'false' <Nodes::FalseLiteral>
   end
 
   rule nil
-    'nil' <NilLiteral>
+    'nil' <Nodes::NilLiteral>
   end
 
   rule symbol
-    [a-z] [a-z0-9]* <SymbolLiteral>
+    [a-z] [a-z0-9]* <Nodes::SymbolLiteral>
   end
 
   rule number
-    '-'? ([1-9] [0-9]* / '0') <NumberLiteral>
+    '-'? ([1-9] [0-9]* / '0') <Nodes::NumberLiteral>
   end
 
   rule float
-    number '.' [0-9]* <FloatLiteral>
+    number '.' [0-9]* <Nodes::FloatLiteral>
   end
 
   rule string
-    '"' [^"]* '"' <StringLiteral>
+    '"' [^"]* '"' <Nodes::StringLiteral>
   end
 
   rule space
