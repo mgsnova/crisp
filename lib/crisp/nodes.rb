@@ -36,13 +36,13 @@ module Crisp
   class Primitive < Base
   end
 
-  class Number < Primitive
+  class NumberLiteral < Primitive
     def eval(env)
       text_value.to_i
     end
   end
 
-  class Float < Primitive
+  class FloatLiteral < Primitive
     def eval(env)
       text_value.to_f
     end
@@ -54,25 +54,25 @@ module Crisp
     end
   end
 
-  class Symbol < Primitive
+  class SymbolLiteral < Primitive
     def eval(env)
       text_value.to_sym
     end
   end
 
-  class True < Primitive
+  class TrueLiteral < Primitive
     def eval(env)
       true
     end
   end
 
-  class False < Primitive
+  class FalseLiteral < Primitive
     def eval(env)
       false
     end
   end
 
-  class Nil < Primitive
+  class NilLiteral < Primitive
     def eval(env)
       nil
     end
