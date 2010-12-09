@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "when evaluating string expressions, the language" do
+describe "string functionality" do
   include Crisp::SpecHelper
 
   it "should concat strings" do

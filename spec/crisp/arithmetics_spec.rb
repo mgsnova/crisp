@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "when evaluating arithmetic expressions, the language" do
+describe "arithemtic functions" do
   include Crisp::SpecHelper
 
   it "adds integer values" do
