@@ -2,9 +2,9 @@ module Crisp
   module Nodes
     # The symbol node
     class SymbolLiteral < Primitive
-      # return a symbol
-      def eval(env)
-        text_value.to_sym
+      # return the value for the key in the env the symbol stays for
+      def resolve(env)
+        env[text_value]
       end
     end
   end

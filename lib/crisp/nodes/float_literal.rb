@@ -3,7 +3,7 @@ module Crisp
     # The float node
     class FloatLiteral < Primitive
       # returns float value
-      def eval(env)
+      def resolve(env)
         text_value.to_f
       end
     end

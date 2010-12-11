@@ -12,6 +12,11 @@ module Crisp
 
         last_result
       end
+
+      # a block resolves to itself
+      def resolve(env)
+        self
+      end
     end
   end
 end

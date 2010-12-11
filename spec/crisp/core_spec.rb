@@ -49,4 +49,8 @@ describe "the core language features" do
       evaluate("(if true)")
     end.should raise_error(Crisp::ArgumentError, "wrong number of arguments for 'if' (1 for 2..3)")
   end
+
+  it "resolves symbols in if statements" do
+    evaluate("(def foo 2)(if true foo)").should == 2
+  end
 end

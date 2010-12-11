@@ -2,8 +2,8 @@ module Crisp
   module Nodes
     # The nil node
     class NilLiteral < Primitive
-      # yes it evals to nil
-      def eval(env)
+      # yes it resolves to nil
+      def resolve(env)
         nil
       end
     end

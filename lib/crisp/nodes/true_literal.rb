@@ -2,8 +2,8 @@ module Crisp
   module Nodes
     # The true node
     class TrueLiteral < Primitive
-      # yes it evals to true
-      def eval(env)
+      # yes it resolves to true
+      def resolve(env)
         true
       end
     end

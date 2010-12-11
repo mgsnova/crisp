@@ -7,8 +7,8 @@ module Crisp
     #   Base
     #   + Operation
     #   + Block
+    #   + Array
     #   + Primitive
-    #     + Array
     #     + Integer
     #     + Float
     #     + String

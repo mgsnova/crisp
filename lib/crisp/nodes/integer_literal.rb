@@ -3,7 +3,7 @@ module Crisp
     # The integer node
     class IntegerLiteral < Primitive
       # returns integer value
-      def eval(env)
+      def resolve(env)
         text_value.to_i
       end
     end

@@ -25,12 +25,13 @@ module Crisp
         Function.new do
           validate_args_count(2, args.size)
 
+          key = args[0].text_value
           value = args_evaled[1]
 
           if value.class.name == "Crisp::Function"
-            value.bind(args[0].eval(env), env)
+            value.bind(key, env)
           else
-            env[args[0].eval(env)] = value
+            env[key] = value
           end
         end.bind('def', current_env)
 
@@ -55,16 +56,13 @@ module Crisp
           fn_arg_list = args[0].raw_elements
           fn_operation = args[1]
 
+          # create and return the new function
           Function.new do
             validate_args_count(fn_arg_list.size, args.size)
 
             local_env = Env.new
             fn_arg_list.each_with_index do |key, idx|
-              local_env[key.eval(env)] = if args[idx].class.name == "Crisp::Nodes::Operation"
-                args[idx].eval(env)
-              else
-                args[idx]
-              end
+              local_env[key.text_value] = args[idx].resolve_and_eval(env)
             end
 
             chained_env = ChainedEnv.new(local_env, env)
@@ -82,13 +80,15 @@ module Crisp
         Function.new do
           validate_args_count((2..3), args.size)
 
-          result = args[0].eval(env)
+          result = args[0].resolve_and_eval(env)
 
-          if ![nil, false].include?(result)
-            args[1].eval(env)
+          res = if ![nil, false].include?(result)
+            args[1]
           elsif args[2]
-            args[2].eval(env)
+            args[2]
           end
+
+          res ? res.resolve_and_eval(env) : res
         end.bind('if', current_env)
 
       end

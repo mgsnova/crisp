@@ -16,6 +16,6 @@ describe "the language" do
   it "bind arrays to symbols" do
     evaluate("(def bla [1 2 3])").size.should == 3
     evaluate("(def bla [1 2 3])")[1].should == 2
-    evaluate("(def bla [1 2 foo])")[2].should == :foo
+    evaluate("(def foo 5)(def bla [1 2 foo])")[2].should == 5
   end
 end

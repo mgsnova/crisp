@@ -10,6 +10,11 @@ module Crisp
       @second = second
     end
 
+    # Returns boolean for existence of given key in one of the environments.
+    def has_key?(key)
+      @first.has_key?(key) or @second.has_key?(key)
+    end
+
     # Read access is performed preferred on the 'first' env.
     # If the 'first' env is not holding a value for the key, the 'second' will be requested.
     def [](key)

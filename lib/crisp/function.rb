@@ -32,32 +32,21 @@ module Crisp
       end
     end
 
-    def args_values
-      args.map do |arg|
-        arg.eval(env)
-      end
-    end
-
+    # returns the resolved/evaled argument list
     def args_evaled
-      args_values.map do |arg|
-        if arg.class.to_s == 'Symbol'
-          if env[arg].respond_to?(:eval)
-            env[arg].eval(env)
-          else
-            env[arg]
-          end
-        else
-          arg
-        end
+      args.map do |arg|
+        arg.resolve_and_eval(env)
       end
     end
 
     private
 
+    # returns the env of the function is evaled with at the moment
     def env
       @env
     end
 
+    # returns the argument list the function is evaled with at the moment
     def args
       @args
     end

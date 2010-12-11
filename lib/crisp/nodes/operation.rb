@@ -6,6 +6,11 @@ module Crisp
       def eval(env)
         env[self.func_identifier.text_value].eval(env, self.element_list.elements.collect(&:element))
       end
+
+      # an operation resolves to itself
+      def resolve(env)
+        self
+      end
     end
   end
 end

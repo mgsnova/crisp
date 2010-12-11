@@ -3,7 +3,7 @@ module Crisp
     # The string node
     class StringLiteral < Primitive
       # return a string
-      def eval(env)
+      def resolve(env)
         text_value[1..-2]
       end
     end

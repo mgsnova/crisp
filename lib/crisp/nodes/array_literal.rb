@@ -7,6 +7,11 @@ module Crisp
         raw_elements.map { |e| e.eval(env) }
       end
 
+      # an array resolves to its raw elements
+      def resolve(env)
+        raw_elements.map { |e| e.resolve(env) }
+      end
+
       # return an array with the raw parsed array elements
       def raw_elements
         self.element_list.elements.collect(&:element)
