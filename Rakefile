@@ -14,7 +14,7 @@ begin
     gem.email = "github@mgsnova.de"
     gem.homepage = "http://github.com/mgsnova/crisp"
     gem.authors = ['Markus Gerdes']
-    gem.add_dependency 'treetop', '~> 1.4.0'
+    gem.add_dependency 'treetop', '~> 1.4.9'
     gem.add_development_dependency 'rspec', '~> 2.2.0'
   end
 
