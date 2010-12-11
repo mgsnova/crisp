@@ -1,6 +1,8 @@
 module Crisp
   module Nodes
-    class NumberLiteral < Primitive
+    # The integer node
+    class IntegerLiteral < Primitive
+      # returns integer value
       def eval(env)
         text_value.to_i
       end

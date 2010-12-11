@@ -1,6 +1,8 @@
 module Crisp
   module Nodes
+    # The block node
     class Block < Base
+      # eval each element of the block and return the last result
       def eval(env)
         last_result = nil
 

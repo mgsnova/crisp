@@ -1,5 +1,7 @@
 module Crisp
   module Nodes
+    # require all used node types
+
     require 'crisp/nodes/base'
     require 'crisp/nodes/operation'
     require 'crisp/nodes/block'
