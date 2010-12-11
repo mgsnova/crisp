@@ -12,7 +12,7 @@ describe "the languages functions" do
   it "does not create a function when not providing a proper argument list" do
     lambda do
       evaluate("(fn (+ 2 1) (+ 1 2))")
-    end.should raise_error(Crisp::ArgumentError, "no parameter list defined")
+    end.should raise_error(Crisp::ArgumentError, "no argument list defined")
   end
 
   it "does not create a function when not providing a proper function body" do

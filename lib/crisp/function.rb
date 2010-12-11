@@ -12,37 +12,37 @@ module Crisp
       env[name] = self
     end
 
-    def eval(env, params = [])
+    def eval(env, args = [])
       @env = env
-      @params = params
+      @args = args
       self.instance_eval(&@blk)
     end
 
     protected
 
-    def validate_params_count(expected, got)
+    def validate_args_count(expected, got)
       if (expected.is_a?(Numeric) and expected != got) or
          (expected.is_a?(Range) and !(expected === got))
         raise ArgumentError, "wrong number of arguments for '#{name}' (#{got} for #{expected})"
       end
     end
 
-    def params_values
-      params.map do |param|
-        param.eval(env)
+    def args_values
+      args.map do |arg|
+        arg.eval(env)
       end
     end
 
-    def params_evaled
-      params_values.map do |param|
-        if param.class.to_s == 'Symbol'
-          if env[param].respond_to?(:eval)
-            env[param].eval(env)
+    def args_evaled
+      args_values.map do |arg|
+        if arg.class.to_s == 'Symbol'
+          if env[arg].respond_to?(:eval)
+            env[arg].eval(env)
           else
-            env[param]
+            env[arg]
           end
         else
-          param
+          arg
         end
       end
     end
@@ -53,8 +53,8 @@ module Crisp
       @env
     end
 
-    def params
-      @params
+    def args
+      @args
     end
   end
 end

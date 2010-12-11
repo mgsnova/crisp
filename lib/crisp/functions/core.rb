@@ -4,44 +4,44 @@ module Crisp
       def self.load(current_env)
 
         Function.new do
-          print params_evaled.collect(&:to_s).join(' ') + "\n"
+          print args_evaled.collect(&:to_s).join(' ') + "\n"
         end.bind('println', current_env)
 
         Function.new do
-          validate_params_count(2, params.size)
+          validate_args_count(2, args.size)
 
-          value = params_evaled[1]
+          value = args_evaled[1]
 
           if value.class.name == "Crisp::Function"
-            value.bind(params[0].eval(env), env)
+            value.bind(args[0].eval(env), env)
           else
-            env[params[0].eval(env)] = value
+            env[args[0].eval(env)] = value
           end
         end.bind('def', current_env)
 
         Function.new do
-          validate_params_count(2, params.size)
+          validate_args_count(2, args.size)
 
-          if params[0].class.name != "Crisp::Nodes::ArrayLiteral"
-            raise ArgumentError, "no parameter list defined"
+          if args[0].class.name != "Crisp::Nodes::ArrayLiteral"
+            raise ArgumentError, "no argument list defined"
           end
 
-          if params[1].class.name != "Crisp::Nodes::Operation"
+          if args[1].class.name != "Crisp::Nodes::Operation"
             raise ArgumentError, "no function body defined"
           end
 
-          fn_param_list = params[0].raw_elements
-          fn_operation = params[1]
+          fn_arg_list = args[0].raw_elements
+          fn_operation = args[1]
 
           Function.new do
-            validate_params_count(fn_param_list.size, params.size)
+            validate_args_count(fn_arg_list.size, args.size)
 
             local_env = Env.new
-            fn_param_list.each_with_index do |key, idx|
-              local_env[key.eval(env)] = if params[idx].class.name == "Crisp::Nodes::Operation"
-                params[idx].eval(env)
+            fn_arg_list.each_with_index do |key, idx|
+              local_env[key.eval(env)] = if args[idx].class.name == "Crisp::Nodes::Operation"
+                args[idx].eval(env)
               else
-                params[idx]
+                args[idx]
               end
             end
 
@@ -52,14 +52,14 @@ module Crisp
         end.bind('fn', current_env)
 
         Function.new do
-          validate_params_count((2..3), params.size)
+          validate_args_count((2..3), args.size)
 
-          result = params[0].eval(env)
+          result = args[0].eval(env)
 
           if ![nil, false].include?(result)
-            params[1].eval(env)
-          elsif params[2]
-            params[2].eval(env)
+            args[1].eval(env)
+          elsif args[2]
+            args[2].eval(env)
           end
         end.bind('if', current_env)
 
