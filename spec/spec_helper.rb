@@ -8,6 +8,8 @@ SPEC_ROOT = Pathname(__FILE__).dirname.expand_path
 
 require SPEC_ROOT.parent + 'lib/crisp'
 
+# Helper module for including into the specs,
+# to parse and evaluate crisp code easily.
 module Crisp
   module SpecHelper
     def parse(expr)
