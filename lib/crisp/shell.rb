@@ -1,7 +1,11 @@
 module Crisp
+  # The Crisp interactive shell
+  #
+  # Create a new instance and call run for having a interactive Crisp shell.
   class Shell
     require 'readline'
 
+    # start the shell
     def run
       runtime = Runtime.new
       buffer = ''

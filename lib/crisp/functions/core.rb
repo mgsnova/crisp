@@ -1,12 +1,27 @@
 module Crisp
   module Functions
+    # Defining core crisp functions
     class Core
+      # load the functions and bind them into the given environment
       def self.load(current_env)
 
+        # println
+        # print arguments (seperated by whitspace) including a newline to the standard output
+        #
+        #  (println 123)
+        #  123
         Function.new do
           print args_evaled.collect(&:to_s).join(' ') + "\n"
         end.bind('println', current_env)
 
+        # def
+        # bind the second argument to the symbol name of the first argument
+        # actually a key/value pair will be stored in the environment
+        #
+        #  (def foo 1)
+        #  => foo
+        #  (println foo)
+        #  1
         Function.new do
           validate_args_count(2, args.size)
 
@@ -19,6 +34,13 @@ module Crisp
           end
         end.bind('def', current_env)
 
+        # fn
+        # creates a function
+        # the first argument has to be an array containing the argumentlist
+        # the second argument is the function body
+        #
+        #  (fn [a b] (+ a b)
+        #  => ...)
         Function.new do
           validate_args_count(2, args.size)
 
@@ -51,6 +73,12 @@ module Crisp
           end
         end.bind('fn', current_env)
 
+        # if
+        # the if function evaluates the second argument if the condition (first argument) returns not nil or false.
+        # Otherwise the third argument will be evaluated (optional)
+        #
+        #  (if (= 1 2) 1 2)
+        #  => 2
         Function.new do
           validate_args_count((2..3), args.size)
 
