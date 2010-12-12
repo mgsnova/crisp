@@ -1,7 +1,7 @@
 module Crisp
   # The Crisp function
   class Function
-    attr_reader :name
+    attr_reader :name, :args, :env
 
     # create new function by calling new with a code block
     def initialize(&blk)
@@ -37,18 +37,6 @@ module Crisp
       args.map do |arg|
         arg.resolve_and_eval(env)
       end
-    end
-
-    private
-
-    # returns the env of the function is evaled with at the moment
-    def env
-      @env
-    end
-
-    # returns the argument list the function is evaled with at the moment
-    def args
-      @args
     end
   end
 end
