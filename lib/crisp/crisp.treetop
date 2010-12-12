@@ -20,6 +20,8 @@ grammar Crisp
     symbol
     /
     [/=*<>\-+]
+    /
+    operation
   end
 
   rule true

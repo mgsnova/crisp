@@ -42,4 +42,8 @@ describe "the languages functions" do
       evaluate("(def myfn (fn [a1 a2 a3] (+ 1 1)))(myfn 1)")
     end.should raise_error(Crisp::ArgumentError, "wrong number of arguments for 'myfn' (1 for 3)")
   end
+
+  it "instantly evaluates a function" do
+    evaluate("((fn [] (+ 1 2)))").should == 3
+  end
 end
