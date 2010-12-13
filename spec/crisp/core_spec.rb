@@ -28,6 +28,22 @@ describe "the core language features" do
     evaluate("(def bla (* 2 3)) (* 4 bla 2)").should == 48
   end
 
+  it "can not resolve unbound symbols" do
+    lambda do
+      evaluate("n")
+    end.should raise_error(Crisp::EnvironmentError, "n is unbound")
+  end
+
+  it "can resolve primitve types" do
+    evaluate("2").should == 2
+    evaluate("2.1").should == 2.1
+    evaluate("nil").should == nil
+    evaluate("true").should == true
+    evaluate("false").should == false
+    evaluate("\"abc\"").should == 'abc'
+    evaluate("[1 2 3]").should == [1, 2, 3]
+  end
+
   it "has if statements" do
     evaluate("(if true 1)").should == 1
     evaluate("(if false 1)").should == nil

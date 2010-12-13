@@ -7,7 +7,7 @@ module Crisp
         last_result = nil
 
         elements.each do |op|
-          last_result = op.eval(env)
+          last_result = op.resolve_and_eval(env)
         end
 
         last_result

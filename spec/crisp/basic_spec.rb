@@ -18,4 +18,10 @@ describe "the language" do
     evaluate("(def bla [1 2 3])")[1].should == 2
     evaluate("(def foo 5)(def bla [1 2 foo])")[2].should == 5
   end
+
+  it "does not evaluate numbers" do
+    lambda do
+      evaluate("(3)")
+    end.should raise_error(Crisp::SyntaxError, "syntax error at : 0")
+  end
 end

@@ -5,6 +5,11 @@ module Crisp
       # load the functions and bind them into the given environment
       def self.load(current_env)
 
+        # reserve nil/true/false in environment
+        current_env['nil'] = nil
+        current_env['true'] = true
+        current_env['false'] = false
+
         # println
         # print arguments (seperated by whitspace) including a newline to the standard output
         #
@@ -26,7 +31,7 @@ module Crisp
           validate_args_count(2, args.size)
 
           key = args[0].text_value
-          value = args_evaled[1]
+          value = args[1].resolve_and_eval(env)
 
           if value.class.name == "Crisp::Function"
             value.bind(key, env)

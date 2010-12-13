@@ -1,7 +1,7 @@
 grammar Crisp
 
   rule block
-    (operation)* <Nodes::Block>
+    (func_identifier / element)* <Nodes::Block>
   end
 
   rule operation
