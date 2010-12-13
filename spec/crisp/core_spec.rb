@@ -40,8 +40,19 @@ describe "the core language features" do
     evaluate("nil").should == nil
     evaluate("true").should == true
     evaluate("false").should == false
-    evaluate("\"abc\"").should == 'abc'
+    evaluate('"abc"').should == 'abc'
     evaluate("[1 2 3]").should == [1, 2, 3]
+  end
+
+  it "can resolve bounded symbols" do
+    evaluate("(def foo 23) foo").should == 23
+    evaluate('(def foo "foo") foo').should == 'foo'
+  end
+
+  it "binds symbols to value of already bound symbol" do
+    evaluate("(def a 1)
+              (def b a)
+              b").should == 1
   end
 
   it "has if statements" do
