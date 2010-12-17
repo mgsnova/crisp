@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
     "LICENSE",
     "README.md",
     "Rakefile",
+    "autotest/discover.rb",
     "bin/crisp",
     "crisp.gemspec",
     "lib/crisp.rb",

@@ -96,7 +96,11 @@ module Crisp
           res ? res.resolve_and_eval(env) : res
         end.bind('if', current_env)
 
-        # . native-call target-object arg1 arg2 ..
+        # .
+        # perform a native call on an object with optional arguments
+        #
+        #  (. upcase "abc")
+        #  => "ABC"
         Function.new do
           meth = args[0].text_value.to_sym
           target = args[1].resolve_and_eval(env)
