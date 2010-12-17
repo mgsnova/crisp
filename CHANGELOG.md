@@ -1,7 +1,13 @@
-## 0.0.6 (2010-xx-xx)
+## 0.0.7 (2010-xx-xx)
+
+* ...
+
+## 0.0.6 (2010-12-17)
 
 * if else statements
 * compare functions
+* basic support for ruby method invokation (thanks to invadersmustdie)
+* supplied first examples
 * refactored internals and specs
 
 ## 0.0.5 (2010-11-29)
