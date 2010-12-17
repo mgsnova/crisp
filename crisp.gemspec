@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Markus Gerdes"]
-  s.date = %q{2010-12-15}
+  s.date = %q{2010-12-17}
   s.default_executable = %q{crisp}
   s.email = %q{github@mgsnova.de}
   s.executables = ["crisp"]
@@ -30,9 +30,11 @@ Gem::Specification.new do |s|
     "lib/crisp/env.rb",
     "lib/crisp/errors.rb",
     "lib/crisp/function.rb",
+    "lib/crisp/function_runner.rb",
     "lib/crisp/functions.rb",
     "lib/crisp/functions/arithmetic.rb",
     "lib/crisp/functions/core.rb",
+    "lib/crisp/native_call_invoker.rb",
     "lib/crisp/nodes.rb",
     "lib/crisp/nodes/array_literal.rb",
     "lib/crisp/nodes/base.rb",
@@ -54,6 +56,7 @@ Gem::Specification.new do |s|
     "spec/crisp/core_spec.rb",
     "spec/crisp/function_spec.rb",
     "spec/crisp/internal_spec.rb",
+    "spec/crisp/native_call_invoker_spec.rb",
     "spec/crisp/string_spec.rb",
     "spec/spec_helper.rb"
   ]
@@ -67,6 +70,7 @@ Gem::Specification.new do |s|
     "spec/crisp/core_spec.rb",
     "spec/crisp/function_spec.rb",
     "spec/crisp/internal_spec.rb",
+    "spec/crisp/native_call_invoker_spec.rb",
     "spec/crisp/string_spec.rb",
     "spec/spec_helper.rb"
   ]
