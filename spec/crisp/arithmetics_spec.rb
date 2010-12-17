@@ -81,4 +81,15 @@ describe "arithemtic functions" do
     evaluate("(< 1 1)").should == false
     evaluate("(< 1 2)").should == true
   end
+
+  it "should calc fibonacci numbers" do
+    evaluate("
+      (def fib (
+        fn [n]
+        (if (< n 2)
+          n
+          (+ (fib (- n 1)) (fib (- n 2))))))
+      (fib 10)
+    ").should == 55
+  end
 end
