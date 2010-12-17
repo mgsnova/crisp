@@ -96,6 +96,15 @@ module Crisp
           res ? res.resolve_and_eval(env) : res
         end.bind('if', current_env)
 
+        # . native-call target-object arg1 arg2 ..
+        Function.new do
+          meth = args[0].text_value.to_sym
+          target = args[1].resolve_and_eval(env)
+          values = args[2..-1].map { |arg| arg.resolve_and_eval(env) }
+
+          NativeCallInvoker.new(target, meth, values).invoke!
+        end.bind('.', current_env)
+
       end
     end
   end
