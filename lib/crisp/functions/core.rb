@@ -54,10 +54,6 @@ module Crisp
             raise ArgumentError, "no argument list defined"
           end
 
-          if args[1].class.name != "Crisp::Nodes::Operation"
-            raise ArgumentError, "no function body defined"
-          end
-
           fn_arg_list = args[0].raw_elements
           fn_operation = args[1]
 
@@ -72,7 +68,7 @@ module Crisp
 
             chained_env = ChainedEnv.new(local_env, env)
 
-            fn_operation.eval(chained_env)
+            fn_operation.resolve_and_eval(chained_env)
           end
         end.bind('fn', current_env)
 

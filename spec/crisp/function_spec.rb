@@ -15,10 +15,11 @@ describe "the languages functions" do
     end.should raise_error(Crisp::ArgumentError, "no argument list defined")
   end
 
-  it "does not create a function when not providing a proper function body" do
-    lambda do
-      evaluate("(fn [] [])")
-    end.should raise_error(Crisp::ArgumentError, "no function body defined")
+  it "does return primitive values as result" do
+    evaluate("((fn [] 1))").should == 1
+    evaluate('((fn [] "abc"))').should == 'abc'
+    evaluate('((fn [] [1 2 3]))').should == [1, 2, 3]
+    evaluate("((fn [x] x) 2)").should == 2
   end
 
   it "creates functions" do
