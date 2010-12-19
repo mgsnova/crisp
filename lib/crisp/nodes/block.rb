@@ -4,13 +4,9 @@ module Crisp
     class Block < Base
       # eval each element of the block and return the last result
       def eval(env)
-        last_result = nil
-
-        elements.each do |op|
-          last_result = op.resolve_and_eval(env)
-        end
-
-        last_result
+        elements.map do |op|
+          op.resolve_and_eval(env)
+        end.last
       end
 
       # a block resolves to itself
