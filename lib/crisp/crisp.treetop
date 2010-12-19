@@ -37,7 +37,7 @@ grammar Crisp
   end
 
   rule symbol
-    [a-z] [a-z0-9]* <Nodes::SymbolLiteral>
+    [a-zA-Z] [a-zA-Z0-9]* <Nodes::SymbolLiteral>
   end
 
   rule integer

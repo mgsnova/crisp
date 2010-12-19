@@ -127,7 +127,11 @@ module Crisp
         #  => "ABC"
         Function.new do
           meth = args[0].text_value.to_sym
-          target = args[1].resolve_and_eval(env)
+          target = if args[1].class.name == "Crisp::Nodes::SymbolLiteral" and !env.has_key?(args[1].text_value)
+            Object.const_get(args[1].text_value)
+          else
+            args[1].resolve_and_eval(env)
+          end
           values = args[2..-1].map { |arg| arg.resolve_and_eval(env) }
 
           NativeCallInvoker.new(target, meth, values).invoke!

@@ -20,4 +20,10 @@ describe "NativeCallInvoker functionality" do
       evaluate('(. foo "bar")')
     end.should raise_error(NoMethodError, %q{undefined method `foo' for "bar":String})
   end
+
+  it "should execute calls on Ruby classes" do
+    evaluate("(. new String)").should == ''
+    evaluate('(. new String "123")').should == '123'
+    evaluate("(. new Array 5 2)").should == [2, 2, 2, 2, 2]
+  end
 end
