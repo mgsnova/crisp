@@ -92,6 +92,34 @@ module Crisp
           res ? res.resolve_and_eval(env) : res
         end.bind('if', current_env)
 
+        # let
+        # create local binding only valid within let and evaluate expressions
+        #
+        #  (let [x 1 y 2] (+ x y))
+        #  => 3
+        Function.new do
+          if args[0].class.name != "Crisp::Nodes::ArrayLiteral"
+            raise ArgumentError, "no argument list defined"
+          end
+
+          if args[0].raw_elements.size.odd?
+            raise ArgumentError, "argument list has to contain even list of arguments"
+          end
+
+          local_env = Env.new
+          chained_env = ChainedEnv.new(local_env, env)
+          binding_array = args[0].raw_elements
+
+          binding_array.each_with_index do |key, idx|
+            next if idx.odd?
+            local_env[key.text_value] = binding_array[idx+1].resolve_and_eval(chained_env)
+          end
+
+          args[1..-1].map do |op|
+            op.resolve_and_eval(chained_env)
+          end.first
+        end.bind('let', current_env)
+
         # .
         # perform a native call on an object with optional arguments
         #

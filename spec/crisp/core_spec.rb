@@ -80,4 +80,40 @@ describe "the core language features" do
   it "resolves symbols in if statements" do
     evaluate("(def foo 2)(if true foo)").should == 2
   end
+
+  it "uses local binding with let" do
+    evaluate("(let [x 1] x)").should == 1
+  end
+
+  it "uses more complex local bindings with let" do
+    evaluate("(let [x 2 y x] (* x y))").should == 4
+  end
+
+  it "binds symbols to global binding within local binding" do
+    evaluate("(let [x 1 y 2] (def foo (+ x y))) foo").should == 3
+  end
+
+  it "overrides global binding within local binding" do
+    evaluate("(def x 1)(let [x 2] x)").should == 2
+  end
+
+  it "local binding is only valid within let" do
+    evaluate("(def x 1)(let [x 2] x) x").should == 1
+  end
+
+  it "can handle emtpy local binding" do
+    evaluate("(let [] 2)").should == 2
+  end
+
+  it "raise error when calling let without correct argument" do
+    lambda do
+      evaluate("(let 2 2)")
+    end.should raise_error(Crisp::ArgumentError, "no argument list defined")
+  end
+
+  it "raise error when calling let with odd binding list" do
+    lambda do
+      evaluate("(let [x 1 y] 2)")
+    end.should raise_error(Crisp::ArgumentError, "argument list has to contain even list of arguments")
+  end
 end
