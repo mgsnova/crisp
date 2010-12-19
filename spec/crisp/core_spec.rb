@@ -89,6 +89,10 @@ describe "the core language features" do
     evaluate("(let [x 2 y x] (* x y))").should == 4
   end
 
+  it "evaluates several expressions within local binding" do
+    evaluate("(let [x 2 y 3] (* x y) (+ x y))").should == 5
+  end
+
   it "binds symbols to global binding within local binding" do
     evaluate("(let [x 1 y 2] (def foo (+ x y))) foo").should == 3
   end

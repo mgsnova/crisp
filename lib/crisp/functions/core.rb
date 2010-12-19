@@ -117,7 +117,7 @@ module Crisp
 
           args[1..-1].map do |op|
             op.resolve_and_eval(chained_env)
-          end.first
+          end.last
         end.bind('let', current_env)
 
         # .
