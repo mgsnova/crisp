@@ -137,6 +137,32 @@ module Crisp
           NativeCallInvoker.new(target, meth, values).invoke!
         end.bind('.', current_env)
 
+        # load
+        # include content of another crisp source file
+        #
+        #  (load "business_logic")
+        #  => true
+        Function.new do
+          args_evaled.collect(&:to_s).each do |filename|
+            pwd = `pwd`.strip
+            file = if filename[0..1] == '/'
+              File.join(pwd, filename)
+            else
+              filename
+            end.sub(".crisp$", '') + '.crisp'
+
+            if !File.exists?(file)
+              raise Crisp::ArgumentError, "file #{file} not found"
+            end
+
+            filecontent = File.read(file)
+            ast = Crisp::Parser.new.parse(filecontent)
+            Crisp::Runtime.new(env).run(ast)
+          end
+
+          true
+        end.bind('load', current_env)
+
       end
     end
   end

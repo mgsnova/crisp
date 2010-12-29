@@ -120,4 +120,32 @@ describe "the core language features" do
       evaluate("(let [x 1 y] 2)")
     end.should raise_error(Crisp::ArgumentError, "argument list has to contain even list of arguments")
   end
+
+  it "raises error if file to be load not there" do
+    lambda do
+      evaluate('(load "not_there")')
+    end.should raise_error(Crisp::ArgumentError, /file (.*) not found/)
+
+    lambda do
+      evaluate('(load "/not_there")')
+    end.should raise_error(Crisp::ArgumentError, "file /not_there.crisp not found")
+  end
+
+  it "load other crisp files" do
+    File.open("/tmp/crisp_test_file.crisp", 'w') do |f|
+      f << "(def foo 123)"
+    end
+
+    evaluate('(load "/tmp/crisp_test_file")(+ 1 foo)').should == 124
+  end
+
+  it "uses the current environment when loading other crisp source files" do
+    File.open("/tmp/crisp_test_file.crisp", 'w') do |f|
+      f << "(def bla 123)"
+    end
+
+    lambda do
+      evaluate('(def bla 321)(load "/tmp/crisp_test_file")')
+    end.should raise_error(Crisp::EnvironmentError, "bla already binded")
+  end
 end
