@@ -1,0 +1,3 @@
+(load "fibonacci")
+
+(println "fibonacci for 10 is" (fib 10))
