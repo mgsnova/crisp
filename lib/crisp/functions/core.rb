@@ -107,7 +107,8 @@ module Crisp
 
           args.each_with_index do |arg, idx|
             next if idx.odd?
-            if ![nil, false].include?(arg.resolve_and_eval(env))
+            if (arg.class.name == 'Crisp::Nodes::SymbolLiteral' and arg.text_value == 'else') or
+               (![nil, false].include?(arg.resolve_and_eval(env)))
               result = args[idx + 1].resolve_and_eval(env)
               break
             end

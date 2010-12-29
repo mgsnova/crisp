@@ -168,4 +168,10 @@ describe "the core language features" do
   it "does not eval expressions for unmatched condition" do
     evaluate("(cond false (def foo 1) true 2)(def foo 2) foo").should == 2
   end
+
+  it "has n default condition in cond" do
+    evaluate("(cond false 1 true 2 else 3)").should == 2
+    evaluate("(cond true 1 true 2 else 3)").should == 1
+    evaluate("(cond false 1 else 2 true 3)").should == 2
+  end
 end
