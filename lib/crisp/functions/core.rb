@@ -92,6 +92,30 @@ module Crisp
           res ? res.resolve_and_eval(env) : res
         end.bind('if', current_env)
 
+        # cond
+        # cond works like a switch/case statement, evaluating the first expression where the condition matches
+        #
+        #  (cond
+        #   false (println "should not be printed")
+        #   true (println "should be printed"))
+        Function.new do
+          if args.size.odd?
+            raise ArgumentError, "argument list has to contain even list of arguments"
+          end
+
+          result = nil
+
+          args.each_with_index do |arg, idx|
+            next if idx.odd?
+            if ![nil, false].include?(arg.resolve_and_eval(env))
+              result = args[idx + 1].resolve_and_eval(env)
+              break
+            end
+          end
+
+          result
+        end.bind("cond", current_env)
+
         # let
         # create local binding only valid within let and evaluate expressions
         #

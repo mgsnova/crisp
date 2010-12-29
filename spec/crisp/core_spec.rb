@@ -148,4 +148,24 @@ describe "the core language features" do
       evaluate('(def bla 321)(load "/tmp/crisp_test_file")')
     end.should raise_error(Crisp::EnvironmentError, "bla already binded")
   end
+
+  it "raises error if calling cond with wrong number of arguments" do
+    lambda do
+      evaluate("(cond false 1 true)")
+    end.should raise_error(Crisp::ArgumentError, "argument list has to contain even list of arguments")
+  end
+
+  it "has cond statement" do
+    evaluate("(cond)").should == nil
+    evaluate("(cond false 1 false 2)").should == nil
+    evaluate("(cond true 3)").should == 3
+    evaluate("(cond true 3 false 2)").should == 3
+    evaluate("(cond false 3 true 2)").should == 2
+    evaluate("(cond (= 1 1) (+ 1 1))").should == 2
+    evaluate("(cond true 3 true 2 true 1)").should == 3
+  end
+
+  it "does not eval expressions for unmatched condition" do
+    evaluate("(cond false (def foo 1) true 2)(def foo 2) foo").should == 2
+  end
 end

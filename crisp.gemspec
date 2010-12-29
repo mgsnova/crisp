@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "bin/crisp",
     "crisp.gemspec",
     "examples/fibonacci.crisp",
+    "examples/run.crisp",
     "lib/crisp.rb",
     "lib/crisp/chained_env.rb",
     "lib/crisp/crisp.treetop",
