@@ -1,4 +1,4 @@
-## 0.0.8 (2010-xx-xx)
+## 0.0.8 (2011-xx-xx)
 
 * local bindings with let
 * ...
