@@ -1,4 +1,8 @@
-## 0.0.8 (2011-xx-xx)
+## 0.0.9 (2011-xx-xx)
+
+* ...
+
+## 0.0.8 (2011-01-06)
 
 * local bindings with let
 * cond provides a kind of switch/case statemnts, including default path
@@ -6,7 +10,6 @@
 * loops can be performed with loop/recur
 * internal fixes and refactorings
 * more examples
-* ...
 
 ## 0.0.6/0.0.7 (2010-12-17)
 
