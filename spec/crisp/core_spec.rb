@@ -174,4 +174,46 @@ describe "the core language features" do
     evaluate("(cond true 1 true 2 else 3)").should == 1
     evaluate("(cond false 1 else 2 true 3)").should == 2
   end
+
+  it "raises an error when calling loop without correct argument" do
+    lambda do
+      evaluate("(loop 2 2)")
+    end.should raise_error(Crisp::ArgumentError, "no argument list defined")
+  end
+
+  it "raises an error when calling loop with odd binding list" do
+    lambda do
+      evaluate("(loop [x 1 y] 2)")
+    end.should raise_error(Crisp::ArgumentError, "argument list has to contain even list of arguments")
+  end
+
+  it "raises an error when calling recur outside a loop" do
+    lambda do
+      evaluate("(recur 1)")
+    end.should raise_error(Crisp::LoopError, "recur called outside loop")
+  end
+
+  it "raises an error when calling recur with wrong number of arguments" do
+    lambda do
+      evaluate("(loop [x 1] (recur 1 2))")
+    end.should raise_error(Crisp::ArgumentError, "wrong number of arguments for 'recur' (2 for 1)")
+  end
+
+  it "calculates factorials using loop recur" do
+    evaluate("
+      (def factorial
+        (fn [n]
+          (loop [cnt n acc 1]
+            (if (= 0 cnt)
+              acc
+              (recur (- cnt 1) (* acc cnt))))))
+      (factorial 5)
+    ").should == 120
+  end
+
+  it "raises an error when nesting loops" do
+    lambda do
+      evaluate("(loop [x 1] (loop [a 1 b 2] (+ a b)))")
+    end.should raise_error(Crisp::LoopError, "nested loops are not allowed")
+  end
 end

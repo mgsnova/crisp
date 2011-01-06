@@ -2,6 +2,8 @@ module Crisp
   # The Crisp environment is basically a key/value store.
   # The value for each key is immutable, so you can only store one time for each key
   class Env
+    attr_accessor :global_loop_data
+
     # create a new internal hash
     def initialize
       @map = {}

@@ -29,5 +29,15 @@ module Crisp
     def []=(key, val)
       @second[key] = val
     end
+
+    # returns global loop data of global/second env
+    def global_loop_data
+      @second.global_loop_data
+    end
+
+    # set global loop data to global/second env
+    def global_loop_data=(data)
+      @second.global_loop_data = data
+    end
   end
 end

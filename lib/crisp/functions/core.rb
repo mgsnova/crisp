@@ -145,6 +145,74 @@ module Crisp
           end.last
         end.bind('let', current_env)
 
+        # loop
+        # create loop with a local binding, perform a loopjump using recur
+        #
+        #  (loop [cnt 5 acc 1]
+        #    (if (= 0 cnt)
+        #      acc
+        #      (recur (- cnt 1) (* acc cnt))))
+        #  => 120
+        Function.new do
+          if env.global_loop_data
+            raise LoopError, "nested loops are not allowed"
+          end
+
+          if args[0].class.name != "Crisp::Nodes::ArrayLiteral"
+            raise ArgumentError, "no argument list defined"
+          end
+
+          if args[0].raw_elements.size.odd?
+            raise ArgumentError, "argument list has to contain even list of arguments"
+          end
+
+          local_env = Env.new
+          chained_env = ChainedEnv.new(local_env, env)
+          binding_array = args[0].raw_elements
+          argument_name_array = []
+
+          binding_array.each_with_index do |key, idx|
+            next if idx.odd?
+            local_env[key.text_value] = binding_array[idx+1].resolve_and_eval(chained_env)
+            argument_name_array << key.text_value
+          end
+
+          env.global_loop_data = {
+            :operations => args[1..-1],
+            :argument_names =>  argument_name_array
+          }
+
+          result = args[1..-1].map do |op|
+            op.resolve_and_eval(chained_env)
+          end.last
+
+          env.global_loop_data = nil
+
+          result
+        end.bind('loop', current_env)
+
+        # recur
+        # only used inside a loop. recur will trigger a new run of the loop
+        # see 'loop' for an example
+        Function.new do
+          if !env.global_loop_data
+            raise LoopError, "recur called outside loop"
+          end
+
+          validate_args_count(env.global_loop_data[:argument_names].size, args.size)
+
+          local_env = Env.new
+          chained_env = ChainedEnv.new(local_env, env)
+
+          env.global_loop_data[:argument_names].each_with_index do |key, idx|
+            local_env[key] = args[idx].resolve_and_eval(env)
+          end
+
+          env.global_loop_data[:operations].map do |op|
+            op.resolve_and_eval(chained_env)
+          end.last
+        end.bind('recur', current_env)
+
         # .
         # perform a native call on an object with optional arguments
         #

@@ -9,4 +9,7 @@ module Crisp
   class EnvironmentError < StandardError
   end
 
+  class LoopError < StandardError
+  end
+
 end
