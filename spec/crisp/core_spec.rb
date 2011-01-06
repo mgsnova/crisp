@@ -101,7 +101,7 @@ describe "the core language features" do
     evaluate("(def x 1)(let [x 2] x)").should == 2
   end
 
-  it "local binding is only valid within let" do
+  it "ensures that local binding is only valid within let" do
     evaluate("(def x 1)(let [x 2] x) x").should == 1
   end
 
@@ -109,19 +109,19 @@ describe "the core language features" do
     evaluate("(let [] 2)").should == 2
   end
 
-  it "raise error when calling let without correct argument" do
+  it "raises an error when calling let without correct argument" do
     lambda do
       evaluate("(let 2 2)")
     end.should raise_error(Crisp::ArgumentError, "no argument list defined")
   end
 
-  it "raise error when calling let with odd binding list" do
+  it "raises an error when calling let with odd binding list" do
     lambda do
       evaluate("(let [x 1 y] 2)")
     end.should raise_error(Crisp::ArgumentError, "argument list has to contain even list of arguments")
   end
 
-  it "raises error if file to be load not there" do
+  it "raises an error if file to be load not there" do
     lambda do
       evaluate('(load "not_there")')
     end.should raise_error(Crisp::ArgumentError, /file (.*) not found/)
@@ -131,7 +131,7 @@ describe "the core language features" do
     end.should raise_error(Crisp::ArgumentError, "file /not_there.crisp not found")
   end
 
-  it "load other crisp files" do
+  it "loads other crisp files" do
     File.open("/tmp/crisp_test_file.crisp", 'w') do |f|
       f << "(def foo 123)"
     end
@@ -149,7 +149,7 @@ describe "the core language features" do
     end.should raise_error(Crisp::EnvironmentError, "bla already binded")
   end
 
-  it "raises error if calling cond with wrong number of arguments" do
+  it "raises an error if calling cond with wrong number of arguments" do
     lambda do
       evaluate("(cond false 1 true)")
     end.should raise_error(Crisp::ArgumentError, "argument list has to contain even list of arguments")
@@ -169,7 +169,7 @@ describe "the core language features" do
     evaluate("(cond false (def foo 1) true 2)(def foo 2) foo").should == 2
   end
 
-  it "has n default condition in cond" do
+  it "has a default condition in cond" do
     evaluate("(cond false 1 true 2 else 3)").should == 2
     evaluate("(cond true 1 true 2 else 3)").should == 1
     evaluate("(cond false 1 else 2 true 3)").should == 2

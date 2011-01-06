@@ -82,7 +82,7 @@ describe "arithemtic functions" do
     evaluate("(< 1 2)").should == true
   end
 
-  it "should calc fibonacci numbers" do
+  it "calculates fibonacci numbers" do
     evaluate("
       (def fib (
         fn [n]

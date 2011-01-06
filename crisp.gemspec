@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "autotest/discover.rb",
     "bin/crisp",
     "crisp.gemspec",
+    "examples/factorial.crisp",
     "examples/fibonacci.crisp",
     "examples/run.crisp",
     "lib/crisp.rb",
