@@ -85,14 +85,14 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<treetop>, ["~> 1.4.9"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.3.0"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.4.0"])
     else
       s.add_dependency(%q<treetop>, ["~> 1.4.9"])
-      s.add_dependency(%q<rspec>, ["~> 2.3.0"])
+      s.add_dependency(%q<rspec>, ["~> 2.4.0"])
     end
   else
     s.add_dependency(%q<treetop>, ["~> 1.4.9"])
-    s.add_dependency(%q<rspec>, ["~> 2.3.0"])
+    s.add_dependency(%q<rspec>, ["~> 2.4.0"])
   end
 end
 
