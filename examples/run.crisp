@@ -1,3 +1,5 @@
 (load "fibonacci")
+(load "factorial")
 
 (println "fibonacci for 10 is" (fib 10))
+(println "factorial of 10 is" (factorial 10))

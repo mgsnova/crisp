@@ -1,0 +1,6 @@
+(def factorial
+  (fn [n]
+    (loop [cnt n acc 1]
+      (if (= 0 cnt)
+        acc
+        (recur (- cnt 1) (* acc cnt))))))
