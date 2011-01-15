@@ -1,0 +1,18 @@
+(if (= 2 2)
+  (println "2 equals 2"))
+
+(if (= 2 1)
+  (println "2 equals 1")
+  (println "2 does not equals 1"))
+
+(cond
+  (> 2 1) (println "2 is greater than 1"))
+
+(cond
+  (> 1 2) (println "1 is greater than 2")
+  (< 1 2) (println "1 is less than 2"))
+
+(cond
+  (> 1 1) (println "1 is greater than 1")
+  (< 1 1) (println "1 is less then 1")
+  else (println "1 is probably equal 1"))
