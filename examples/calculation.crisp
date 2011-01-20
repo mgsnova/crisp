@@ -1,6 +1,6 @@
 (println "1 plus 1 is " (+ 1 1))
 
-(println "3 minus 1 is " (- 3 2))
+(println "3 minus 2 is " (- 3 2))
 
 (println "2 multiplied with 3 is " (* 2 3))
 
