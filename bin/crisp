@@ -6,7 +6,7 @@ if ARGV.size == 0
   Crisp::Shell.new.run
 elsif ARGV.size == 1
   ast = Crisp::Parser.new.parse(File.read(ARGV[0]))
-  Crisp::Runtime.new.run(ast).to_s
+  Crisp::Runtime.new.run(ast)
 else
   puts "to many args"
   exit 1
