@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "autotest/discover.rb",
     "bin/crisp",
     "crisp.gemspec",
+    "examples/array.crisp",
     "examples/calculation.crisp",
     "examples/comparisons.crisp",
     "examples/factorial.crisp",

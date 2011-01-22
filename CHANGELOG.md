@@ -1,5 +1,7 @@
 ## 0.0.9 (2011-xx-xx)
 
+* head/tail functions for array operations
+* more examples
 * ...
 
 ## 0.0.8 (2011-01-06)
