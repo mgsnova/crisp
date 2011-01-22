@@ -1,0 +1,3 @@
+(println "head of [1,2,3] is " (head [1 2 3]))
+
+(println "tail of [1,2,3] is " (tail [1 2 3]))

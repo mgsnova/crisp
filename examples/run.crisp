@@ -2,6 +2,7 @@
 (load "factorial")
 (load "comparisons")
 (load "calculation")
+(load "array")
 
 (println "fibonacci for 10 is" (fib 10))
 (println "factorial of 10 is" (factorial 10))
