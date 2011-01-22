@@ -18,6 +18,7 @@ The main purpose of the language is to deal with the issues and problems when cr
  *   switch/case conditions with **cond**
  *   local binding with **let**
  *   dynamic loading of crisp source files with **load**
+ *   head and tail functions for array with **head** and **tail**
  *   calling native ruby with **.**
 
 ## Example

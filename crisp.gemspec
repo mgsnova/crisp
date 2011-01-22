@@ -72,6 +72,7 @@ Gem::Specification.new do |s|
   s.summary = %q{a tiny lisp-like language written in ruby using treetop.}
   s.test_files = [
     "spec/crisp/arithmetics_spec.rb",
+    "spec/crisp/array_spec.rb",
     "spec/crisp/basic_spec.rb",
     "spec/crisp/core_spec.rb",
     "spec/crisp/function_spec.rb",
