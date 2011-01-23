@@ -24,16 +24,26 @@ The main purpose of the language is to deal with the issues and problems when cr
 ## Example
 
         # crisp
-        >> (* 2 3)
-        => 6
-        >> (def foo 4)
-        => 4
-        >> (/ (* foo foo) 2 2)
-        => 4
-        >> (def add2 (fn [arg] (+ 2 arg)))
-        => #<Crisp::Function:0x85d1bc0>
-        >> (add2 5)
-        => 7
+        >> (println "Hello World")
+        Hello World
+        =>
+        >> (def fib (
+        ?>   fn [n]
+        ?>     (if (< n 2)
+        ?>       n
+        ?>         (+ (fib (- n 1)) (fib (- n i))))))
+        => #<Crisp::Function:0x1005c2500>
+        >> (fib 10)
+        => 55
+        >> (def factorial
+        ?>   (fn [n]
+        ?>     (loop [cnt n acc 1]
+        ?>       (if (= 0 cnt)
+        ?>         acc
+        ?>         (recur (- cnt 1) (* acc cnt))))))
+        => #<Crisp::Function:0x1001ad9d8>
+        >> (factorial 12)
+        => 479001600
 
 ## Installation
 
