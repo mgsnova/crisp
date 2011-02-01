@@ -45,6 +45,8 @@ The main purpose of the language is to deal with the issues and problems when cr
         >> (factorial 12)
         => 479001600
 
+For more examples see the examples directory in the repository.
+
 ## Installation
 
         gem install crisp
