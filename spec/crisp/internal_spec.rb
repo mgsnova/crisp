@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "internals" do
   include Crisp::SpecHelper
 
-  it "sets and gets values to and from the env" do
+  it "should set and get values to and from the env" do
     env = Crisp::Env.new
     env['key'] = 'value'
 
@@ -13,14 +13,14 @@ describe "internals" do
     env.has_key?(:key).should == true
   end
 
-  it "handles mismatched env reads" do
+  it "should handle mismatched env reads" do
     env = Crisp::Env.new
 
     env.has_key?('not_exists').should == false
     env['not_exists'].should == nil
   end
 
-  it "is not allowed to set env keys twice" do
+  it "should not allow to set env keys twice" do
     env = Crisp::Env.new
     env['key'] = 'value'
 
@@ -29,7 +29,7 @@ describe "internals" do
     end.should raise_error(Crisp::EnvironmentError, "key already binded")
   end
 
-  it "gets values from a chained env" do
+  it "should get values from a chained env" do
     env1 = Crisp::Env.new
     env1[:key1] = 'val1'
     env1[:key2] = 'val2'
@@ -45,7 +45,7 @@ describe "internals" do
     chained[:key3].should == 'val4'
   end
 
-  it "sets values to a chained env" do
+  it "should set values to a chained env" do
     env1 = Crisp::Env.new
     env1[:key] = 'val'
 
