@@ -216,4 +216,12 @@ describe "the core language features" do
       evaluate("(loop [x 1] (loop [a 1 b 2] (+ a b)))")
     end.should raise_error(Crisp::LoopError, "nested loops are not allowed")
   end
+
+  it "should create an alias to a function symbol" do
+    evaluate("(alias fed def) (fed a 1) a").should == 1 
+  end
+
+  it "should create an alias to a value symbol" do
+    evaluate("(def foo 123) (alias bar foo) foo").should == 123
+  end
 end

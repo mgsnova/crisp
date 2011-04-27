@@ -16,7 +16,13 @@ module Crisp
 
     # Returns the value for the given key.
     def [](key)
-      @map[key.to_sym]
+      result = @map[key.to_sym]
+
+      if result.class == Hash and result[:alias_to]
+        self[result[:alias_to]]
+      else
+        result
+      end
     end
 
     # Store the key/value pair.
@@ -25,6 +31,11 @@ module Crisp
       key = key.to_sym
       raise EnvironmentError, "#{key} already binded" if @map.has_key?(key)
       @map[key] = val
+    end
+
+    # Store alias
+    def alias(to, from)
+      self[to] = {:alias_to => from}
     end
   end
 end

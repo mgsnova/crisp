@@ -256,6 +256,21 @@ module Crisp
           true
         end.bind('load', current_env)
 
+        # alias
+        # create alias from one symbol to another
+        # 
+        #  (alias p println)
+        #  (p 123)
+        #  123 
+        Function.new do
+          validate_args_count(2, args.size)
+
+          to = args[0].text_value
+          from = args[1].text_value
+
+          env.alias(to, from)
+        end.bind('alias', current_env)
+
       end
     end
   end

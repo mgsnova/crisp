@@ -57,4 +57,23 @@ describe "internals" do
     env2[:key].should == 'other'
     chained[:key].should == 'val'
   end
+
+  it "should set aliases" do
+    env = Crisp::Env.new
+    env[:key] = 1
+    env.alias(:alias, :key)
+    env[:alias].should == 1
+  end
+
+  it "should set aliases to a chained env" do
+    env1 = Crisp::Env.new
+    env1[:key] = 1
+    env2 = Crisp::Env.new
+
+    env = Crisp::ChainedEnv.new(env1, env2)
+
+    env[:key] = 1
+    env.alias(:alias, :key)
+    env[:alias].should == 1
+  end
 end

@@ -39,5 +39,10 @@ module Crisp
     def global_loop_data=(data)
       @second.global_loop_data = data
     end
+
+    # set alias to global/second env
+    def alias(to, from)
+      @second.alias(to, from)
+    end
   end
 end
