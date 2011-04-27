@@ -1,8 +1,8 @@
-## 0.0.9 (2011-xx-xx)
+## 0.1.0 (2011-04-27)
 
 * head/tail functions for array operations
 * more examples
-* ...
+* alias function
 
 ## 0.0.8 (2011-01-06)
 
