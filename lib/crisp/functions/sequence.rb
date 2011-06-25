@@ -14,6 +14,7 @@ module Crisp
         #        (emit cnt)
         #        (recur (+ cnt 1)))))
         #  (next numbers)
+        #  => 1
         Function.new do
           operations = args[0..-1]
           local_env = Env.new
@@ -47,6 +48,64 @@ module Crisp
 
           seq.next
         end.bind('next', current_env)
+
+        # take
+        # returns an array with the specified count of values from the sequence
+        #
+        #  (def numbers
+        #    (lazyseq
+        #      (loop [cnt 1]
+        #        (emit cnt)
+        #        (recur (+ cnt 1)))))
+        #  (take 5 numbers)
+        #  => [1,2,3,4,5]
+        Function.new do
+          validate_args_count(2, args.size)
+          
+          n = args.first.resolve_and_eval(env)
+          seq = args.last.resolve_and_eval(env)
+
+          if seq.class.name != "Crisp::Lazyseq"
+            raise ArgumentError, "argument is not a sequence"
+          end
+
+          result = []
+
+          n.times do
+            result << seq.next
+          end
+
+          result
+        end.bind('take', current_env)
+
+        # nth
+        # returns the n'th value from the sequence
+        #
+        #  (def numbers
+        #    (lazyseq
+        #      (loop [cnt 1]
+        #        (emit cnt)
+        #        (recur (+ cnt 1)))))
+        #  (nth 5 numbers)
+        #  => 5
+        Function.new do
+          validate_args_count(2, args.size)
+          
+          n = args.first.resolve_and_eval(env)
+          seq = args.last.resolve_and_eval(env)
+
+          if seq.class.name != "Crisp::Lazyseq"
+            raise ArgumentError, "argument is not a sequence"
+          end
+
+          result = nil
+
+          n.times do
+            result = seq.next
+          end
+
+          result
+        end.bind('nth', current_env)
 
       end
     end

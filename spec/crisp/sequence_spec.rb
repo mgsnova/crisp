@@ -59,7 +59,25 @@ describe "the language sequence features" do
               (next seqtest)
               (next seqtest)
               (next seqtest)
-    ").should be 5
+    ").should == 5
+  end
+
+  it "should take n values from a sequence with take" do
+    evaluate("(def seqtest (lazyseq
+                (loop [cnt 1]
+                  (emit cnt)
+                  (recur (+ cnt 1)))))
+              (take 5 seqtest)
+    ").should == [1,2,3,4,5]
+  end
+
+  it "should return the nth value from a sequence with nth" do
+    evaluate("(def seqtest (lazyseq
+                (loop [cnt 1]
+                  (emit cnt)
+                  (recur (+ cnt 1)))))
+              (nth 5 seqtest)
+    ").should == 5
   end
 end
 
