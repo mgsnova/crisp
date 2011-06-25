@@ -2,9 +2,6 @@ PATH
   remote: .
   specs:
     crisp (0.1.0)
-      crisp
-      jeweler
-      rake
       treetop (~> 1.4.9)
 
 GEM
