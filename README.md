@@ -13,6 +13,7 @@ The main purpose of the language is to deal with the issues and problems when cr
  *   comparisons with **>**, **<** and **=**
  *   conditional statements with **if**
  *   loop statements with **loop**/**recur**
+ *   lazy sequences with **lazyseq** and **next**/**take**/**nth**
  *   console output with **println**
  *   function creation with **fn**
  *   switch/case conditions with **cond**
