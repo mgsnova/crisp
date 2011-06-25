@@ -5,7 +5,7 @@ require 'rake/gempackagetask'
 begin
   require 'jeweler'
   $:.unshift('./lib')
-  require 'lib/crisp'
+  require 'crisp'
 
   Jeweler::Tasks.new do |gem|
     gem.name = "crisp"

@@ -44,6 +44,8 @@ Gem::Specification.new do |s|
     "lib/crisp/functions/arithmetic.rb",
     "lib/crisp/functions/array.rb",
     "lib/crisp/functions/core.rb",
+    "lib/crisp/functions/sequence.rb",
+    "lib/crisp/lazyseq.rb",
     "lib/crisp/native_call_invoker.rb",
     "lib/crisp/nodes.rb",
     "lib/crisp/nodes/array_literal.rb",
@@ -68,6 +70,7 @@ Gem::Specification.new do |s|
     "spec/crisp/function_spec.rb",
     "spec/crisp/internal_spec.rb",
     "spec/crisp/native_call_invoker_spec.rb",
+    "spec/crisp/sequence_spec.rb",
     "spec/crisp/string_spec.rb",
     "spec/spec_helper.rb"
   ]
@@ -81,20 +84,17 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<crisp>, [">= 0"])
-      s.add_runtime_dependency(%q<rake>, [">= 0"])
-      s.add_runtime_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<rake>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_runtime_dependency(%q<treetop>, ["~> 1.4.9"])
       s.add_development_dependency(%q<rspec>, ["~> 2.6.0"])
     else
-      s.add_dependency(%q<crisp>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<treetop>, ["~> 1.4.9"])
       s.add_dependency(%q<rspec>, ["~> 2.6.0"])
     end
   else
-    s.add_dependency(%q<crisp>, [">= 0"])
     s.add_dependency(%q<rake>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<treetop>, ["~> 1.4.9"])
