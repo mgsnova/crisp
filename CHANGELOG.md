@@ -1,3 +1,8 @@
+## 0.1.1 (2011-xx-xx)
+
+* lazy sequences
+* nth, take functions for sequences
+
 ## 0.1.0 (2011-04-27)
 
 * head/tail functions for array operations
