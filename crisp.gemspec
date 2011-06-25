@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Markus Gerdes"]
-  s.date = %q{2011-04-27}
+  s.date = %q{2011-06-25}
   s.default_executable = %q{crisp}
   s.email = %q{github@mgsnova.de}
   s.executables = ["crisp"]
@@ -75,17 +75,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{a tiny lisp-like language written in ruby using treetop.}
-  s.test_files = [
-    "spec/crisp/arithmetics_spec.rb",
-    "spec/crisp/array_spec.rb",
-    "spec/crisp/basic_spec.rb",
-    "spec/crisp/core_spec.rb",
-    "spec/crisp/function_spec.rb",
-    "spec/crisp/internal_spec.rb",
-    "spec/crisp/native_call_invoker_spec.rb",
-    "spec/crisp/string_spec.rb",
-    "spec/spec_helper.rb"
-  ]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
@@ -95,24 +84,21 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<crisp>, [">= 0"])
       s.add_runtime_dependency(%q<rake>, [">= 0"])
       s.add_runtime_dependency(%q<jeweler>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.5.0"])
       s.add_runtime_dependency(%q<treetop>, ["~> 1.4.9"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.5.0"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.6.0"])
     else
       s.add_dependency(%q<crisp>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
-      s.add_dependency(%q<rspec>, ["~> 2.5.0"])
       s.add_dependency(%q<treetop>, ["~> 1.4.9"])
-      s.add_dependency(%q<rspec>, ["~> 2.5.0"])
+      s.add_dependency(%q<rspec>, ["~> 2.6.0"])
     end
   else
     s.add_dependency(%q<crisp>, [">= 0"])
     s.add_dependency(%q<rake>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
-    s.add_dependency(%q<rspec>, ["~> 2.5.0"])
     s.add_dependency(%q<treetop>, ["~> 1.4.9"])
-    s.add_dependency(%q<rspec>, ["~> 2.5.0"])
+    s.add_dependency(%q<rspec>, ["~> 2.6.0"])
   end
 end
 
