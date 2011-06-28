@@ -13,7 +13,7 @@ module Crisp
         Function.new do
           validate_args_count(1, args.size)
 
-          if args[0].class.name != "Crisp::Nodes::ArrayLiteral"
+          if !args[0].is_a?(Crisp::Nodes::ArrayLiteral)
             raise ArgumentError, "argument is not an array"
           end
 
@@ -32,7 +32,7 @@ module Crisp
         Function.new do
           validate_args_count(1, args.size)
 
-          if args[0].class.name != "Crisp::Nodes::ArrayLiteral"
+          if !args[0].is_a?(Crisp::Nodes::ArrayLiteral)
             raise ArgumentError, "argument is not an array"
           end
 

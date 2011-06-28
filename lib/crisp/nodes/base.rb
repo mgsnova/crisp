@@ -15,7 +15,7 @@ module Crisp
       # resolves the node and evals it it is a crisp operation node
       def resolve_and_eval(env)
         res = self.resolve(env)
-        res.class.name == "Crisp::Nodes::Operation" ? res.eval(env) : res
+        res.is_a?(Crisp::Nodes::Operation) ? res.eval(env) : res
       end
     end
   end

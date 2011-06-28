@@ -4,7 +4,7 @@ module Crisp
     class Operation < Base
       # get the function binded to the given function name and eval it (including arguments)
       def eval(env)
-        if self.func_identifier.class.name == "Crisp::Nodes::Operation"
+        if self.func_identifier.is_a?(Crisp::Nodes::Operation)
           self.func_identifier.eval(env).eval(env, raw_element_list)
         else
           env[self.func_identifier.text_value].eval(env, raw_element_list)

@@ -42,7 +42,7 @@ module Crisp
 
           seq = args.first.resolve_and_eval(env)
 
-          if seq.class.name != "Crisp::Lazyseq"
+          if !seq.is_a?(Crisp::Lazyseq)
             raise ArgumentError, "argument is not a sequence"
           end
 
@@ -65,7 +65,7 @@ module Crisp
           n = args.first.resolve_and_eval(env)
           seq = args.last.resolve_and_eval(env)
 
-          if seq.class.name != "Crisp::Lazyseq"
+          if !seq.is_a?(Crisp::Lazyseq)
             raise ArgumentError, "argument is not a sequence"
           end
 
@@ -94,7 +94,7 @@ module Crisp
           n = args.first.resolve_and_eval(env)
           seq = args.last.resolve_and_eval(env)
 
-          if seq.class.name != "Crisp::Lazyseq"
+          if !seq.is_a?(Crisp::Lazyseq)
             raise ArgumentError, "argument is not a sequence"
           end
 

@@ -33,7 +33,7 @@ module Crisp
           key = args[0].text_value
           value = args[1].resolve_and_eval(env)
 
-          if value.class.name == "Crisp::Function"
+          if value.is_a?(Crisp::Function)
             value.bind(key, env)
           else
             env[key] = value
@@ -50,7 +50,7 @@ module Crisp
         Function.new do
           validate_args_count(2, args.size)
 
-          if args[0].class.name != "Crisp::Nodes::ArrayLiteral"
+          if !args[0].is_a?(Crisp::Nodes::ArrayLiteral)
             raise ArgumentError, "no argument list defined"
           end
 
@@ -107,7 +107,7 @@ module Crisp
 
           args.each_with_index do |arg, idx|
             next if idx.odd?
-            if (arg.class.name == 'Crisp::Nodes::SymbolLiteral' and arg.text_value == 'else') or
+            if (arg.is_a?(Crisp::Nodes::SymbolLiteral) and arg.text_value == 'else') or
                (![nil, false].include?(arg.resolve_and_eval(env)))
               result = args[idx + 1].resolve_and_eval(env)
               break
@@ -123,7 +123,7 @@ module Crisp
         #  (let [x 1 y 2] (+ x y))
         #  => 3
         Function.new do
-          if args[0].class.name != "Crisp::Nodes::ArrayLiteral"
+          if !args[0].is_a?(Crisp::Nodes::ArrayLiteral)
             raise ArgumentError, "no argument list defined"
           end
 
@@ -158,7 +158,7 @@ module Crisp
             raise LoopError, "nested loops are not allowed"
           end
 
-          if args[0].class.name != "Crisp::Nodes::ArrayLiteral"
+          if !args[0].is_a?(Crisp::Nodes::ArrayLiteral)
             raise ArgumentError, "no argument list defined"
           end
 
@@ -220,7 +220,7 @@ module Crisp
         #  => "ABC"
         Function.new do
           meth = args[0].text_value.to_sym
-          target = if args[1].class.name == "Crisp::Nodes::SymbolLiteral" and !env.has_key?(args[1].text_value)
+          target = if args[1].is_a?(Crisp::Nodes::SymbolLiteral) and !env.has_key?(args[1].text_value)
             Object.const_get(args[1].text_value)
           else
             args[1].resolve_and_eval(env)
