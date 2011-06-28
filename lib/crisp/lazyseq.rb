@@ -3,6 +3,10 @@ module Crisp
   class Lazyseq
     # constructor, creates enumerator from given code block
     def initialize(&blk)
+      if RUBY_VERSION < "1.9.0"
+        raise "To use lazy sequences ruby >=1.9.0 is required"
+      end
+
       @enum = Enumerator.new do |yielder|
         self.instance_exec yielder do
           @emitter = yielder

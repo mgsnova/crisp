@@ -77,19 +77,21 @@ describe "internals" do
     env[:alias].should == 1
   end
 
-  it "should have a lazy sequence" do
-    seq = Crisp::Lazyseq.new do 
-      number = 1
-      loop do
-        emit number
-        number += 1
+  if RUBY_VERSION >= "1.9.0"
+    it "should have a lazy sequence" do
+      seq = Crisp::Lazyseq.new do 
+        number = 1
+        loop do
+          emit number
+          number += 1
+        end
       end
-    end
 
-    seq.next.should be 1
-    seq.next.should be 2
-    seq.next.should be 3
-    seq.next.should be 4
-    seq.next.should be 5
+      seq.next.should be 1
+      seq.next.should be 2
+      seq.next.should be 3
+      seq.next.should be 4
+      seq.next.should be 5
+    end
   end
 end
