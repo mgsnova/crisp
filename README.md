@@ -6,6 +6,10 @@ Crisp has a Lisp syntax and immutable data structures.
 
 The main purpose of the language is to deal with the issues and problems when creating your own programming language.
 
+## CI status
+
+[![Travis-CI Build Status](https://secure.travis-ci.org/mgsnova/crisp.png)](https://secure.travis-ci.org/mgsnova/crisp)
+
 ## Language features
 
  *   binding values to a symbol with **def**
