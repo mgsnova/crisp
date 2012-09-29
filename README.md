@@ -9,6 +9,7 @@ The main purpose of the language is to deal with the issues and problems when cr
 ## CI status
 
 [![Travis-CI Build Status](https://secure.travis-ci.org/mgsnova/crisp.png)](https://secure.travis-ci.org/mgsnova/crisp)
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/mgsnova/crisp)
 
 ## Language features
 
