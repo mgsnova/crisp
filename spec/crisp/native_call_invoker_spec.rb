@@ -18,7 +18,7 @@ describe "NativeCallInvoker functionality" do
   it "should raise a named exception on invalid method" do
     lambda do
       evaluate('(. foo "bar")')
-    end.should raise_error(NoMethodError, %q{undefined method `foo' for "bar":String})
+    end.should raise_error(NoMethodError, /undefined method `foo'/)
   end
 
   it "should execute calls on Ruby classes" do

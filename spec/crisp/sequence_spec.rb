@@ -47,7 +47,7 @@ describe "the language sequence features" do
     it "should create an empty lazy sequence" do
       lambda do
         evaluate("(next (lazyseq))")
-      end.should raise_error(StopIteration, "iteration reached an end")
+      end.should raise_error(StopIteration, /iteration reached (at|an|) end/)
     end
 
     it "should have lazy sequences" do
