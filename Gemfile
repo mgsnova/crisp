@@ -5,5 +5,5 @@ gem 'rake'
 gem 'jeweler'
 
 group :test do
-  gem 'coveralls', require: false
+  gem 'coveralls', :require => false
 end
