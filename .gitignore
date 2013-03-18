@@ -3,4 +3,4 @@ pkg/*
 */pkg/*
 *.swp
 *.swo
-
+coverage
