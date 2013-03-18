@@ -9,7 +9,7 @@ The main purpose of the language is to deal with the issues and problems when cr
 ## CI status
 
 [![Gem Version](https://badge.fury.io/rb/crisp.png)](https://rubygems.org/gems/crisp)
-[![Travis-CI Build Status](https://secure.travis-ci.org/mgsnova/crisp.png)](https://secure.travis-ci.org/mgsnova/crisp)
+[![Travis-CI Build Status](https://travis-ci.org/mgsnova/crisp.png)](https://travis-ci.org/mgsnova/crisp)
 [![Code Climate](https://codeclimate.com/github/mgsnova/crisp.png)](https://codeclimate.com/github/mgsnova/crisp)
 [![Coverage Status](https://coveralls.io/repos/mgsnova/crisp/badge.png)](https://coveralls.io/r/mgsnova/crisp)
 
